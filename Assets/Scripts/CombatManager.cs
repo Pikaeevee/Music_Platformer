@@ -6,18 +6,20 @@ public class CombatManager : MonoBehaviour
 {
   public GameObject player;
   public GameObject enemy;
+  public AudioClip errorSound;
 
   public int numNotes;
   private int[] enemySequence; //Array of enemy notes, ranging from 0 to 3
   private bool playerPhase;
+  private int playerNotesPlayed;
+  private AudioSource audioPlayer;
   
   // Start is called before the first frame update
   void Start()
   {
-    playerPhase = false;
+    audioPlayer = GetComponent<AudioSource>();
     generateEnemySequence();
-    player.GetComponent<PlayerController>().canPlay = false;
-    StartCoroutine(enemy.GetComponent<EnemyController>().PlayNotes(enemySequence));
+    startEnemyPhase();
   }
 
   void generateEnemySequence() {
@@ -27,12 +29,50 @@ public class CombatManager : MonoBehaviour
     }
   }
 
+  void startEnemyPhase() {
+    playerPhase = false;
+    player.GetComponent<PlayerController>().canPlay = false;
+    StartCoroutine(enemy.GetComponent<EnemyController>().PlayNotes(enemySequence));
+  }
+
+  IEnumerator playError() {
+    audioPlayer.Play();
+    yield return new WaitForSeconds(audioPlayer.clip.length);
+    startEnemyPhase();
+  }
+
   // Update is called once per frame
   void Update()
   {
     if(enemy.GetComponent<EnemyController>().donePlaying && !playerPhase) {
       playerPhase = true;
       player.GetComponent<PlayerController>().canPlay = true;
+      playerNotesPlayed = 0;
+    } else if(playerPhase) {
+      if(Input.GetKeyDown("j")) {
+        if(enemySequence[playerNotesPlayed] != 0) {
+          StartCoroutine(playError());
+        }
+        playerNotesPlayed++;
+      } 
+      if(Input.GetKeyDown("k")) {
+        if(enemySequence[playerNotesPlayed] != 1) {
+          StartCoroutine(playError());
+        }
+        playerNotesPlayed++;
+      }
+      if(Input.GetKeyDown("l")) {
+        if(enemySequence[playerNotesPlayed] != 2) {
+          StartCoroutine(playError());
+        }
+        playerNotesPlayed++;
+      }
+      if(Input.GetKeyDown(";")) {
+        if(enemySequence[playerNotesPlayed] != 3) {
+          StartCoroutine(playError());
+        }
+        playerNotesPlayed++;
+      }
     }
   }
 }
