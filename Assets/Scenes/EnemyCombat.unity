@@ -130,8 +130,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 101002591}
-  - component: {fileID: 101002590}
   - component: {fileID: 101002592}
+  - component: {fileID: 101002590}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -154,6 +154,7 @@ MonoBehaviour:
   player: {fileID: 2070412299}
   enemy: {fileID: 1884180779}
   errorSound: {fileID: 8300000, guid: 6c40518a91318466f8eab2f67fc92a60, type: 3}
+  correctSound: {fileID: 8300000, guid: 00e9654ac600b4572be6e95b9d7e7653, type: 3}
   numNotes: 4
 --- !u!4 &101002591
 Transform:
@@ -181,7 +182,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6c40518a91318466f8eab2f67fc92a60, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -358,8 +359,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1884180782}
   - component: {fileID: 1884180781}
-  - component: {fileID: 1884180780}
   - component: {fileID: 1884180783}
+  - component: {fileID: 1884180780}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
