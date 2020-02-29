@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
   public AudioClip[] sounds;
+  public float delayTime;
 
   private AudioSource player;
   // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class EnemyController : MonoBehaviour
       Debug.Log(noteNum);
       player.clip = sounds[noteNum];
       player.Play();
-      yield return new WaitForSeconds(player.clip.length);
+      yield return new WaitForSeconds(player.clip.length + delayTime);
     }
   }
   // Update is called once per frame
