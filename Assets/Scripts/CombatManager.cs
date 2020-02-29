@@ -9,11 +9,14 @@ public class CombatManager : MonoBehaviour
 
   public int numNotes;
   private int[] enemySequence; //Array of enemy notes, ranging from 0 to 3
+  private bool playerPhase;
   
   // Start is called before the first frame update
   void Start()
   {
+    playerPhase = false;
     generateEnemySequence();
+    player.GetComponent<PlayerController>().canPlay = false;
     StartCoroutine(enemy.GetComponent<EnemyController>().PlayNotes(enemySequence));
   }
 
@@ -27,6 +30,9 @@ public class CombatManager : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-      
+    if(enemy.GetComponent<EnemyController>().donePlaying && !playerPhase) {
+      playerPhase = true;
+      player.GetComponent<PlayerController>().canPlay = true;
+    }
   }
 }

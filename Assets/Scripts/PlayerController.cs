@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
   public AudioClip[] sounds;
+  public bool canPlay;
   // public float delayTime;
 
   private AudioSource player;
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
   void Start()
   {
     player = GetComponent<AudioSource>();
+    canPlay = true;
   }
 
   IEnumerator PlaySound(AudioClip sound) {
@@ -23,17 +25,19 @@ public class PlayerController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if(Input.GetKeyDown("j")) {
-      StartCoroutine(PlaySound(sounds[0]));
-    } 
-    if(Input.GetKeyDown("k")) {
-      StartCoroutine(PlaySound(sounds[1]));
-    }
-    if(Input.GetKeyDown("l")) {
-      StartCoroutine(PlaySound(sounds[2]));
-    }
-    if(Input.GetKeyDown(";")) {
-      StartCoroutine(PlaySound(sounds[3]));
+    if(canPlay) {
+      if(Input.GetKeyDown("j")) {
+        StartCoroutine(PlaySound(sounds[0]));
+      } 
+      if(Input.GetKeyDown("k")) {
+        StartCoroutine(PlaySound(sounds[1]));
+      }
+      if(Input.GetKeyDown("l")) {
+        StartCoroutine(PlaySound(sounds[2]));
+      }
+      if(Input.GetKeyDown(";")) {
+        StartCoroutine(PlaySound(sounds[3]));
+      }
     }
   }
 }

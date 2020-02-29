@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
   public AudioClip[] sounds;
   public float delayTime;
+  public bool donePlaying;
 
   private AudioSource player;
   // Start is called before the first frame update
@@ -15,6 +16,7 @@ public class EnemyController : MonoBehaviour
   }
 
   public IEnumerator PlayNotes(int[] notes) {
+    donePlaying = false;
     for(int i = 0; i < notes.Length; i++) {
       int noteNum = notes[i];
       Debug.Log(noteNum);
@@ -22,6 +24,7 @@ public class EnemyController : MonoBehaviour
       player.Play();
       yield return new WaitForSeconds(player.clip.length + delayTime);
     }
+    donePlaying = true;
   }
   // Update is called once per frame
   void Update()
