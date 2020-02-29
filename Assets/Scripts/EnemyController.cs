@@ -9,13 +9,13 @@ public class EnemyController : MonoBehaviour
   public bool donePlaying;
 
   private AudioSource player;
-  // Start is called before the first frame update
   void Start()
   {
-    player = GetComponent<AudioSource>();
+    player = this.GetComponent<AudioSource>();
   }
 
   public IEnumerator PlayNotes(int[] notes) {
+    player = this.GetComponent<AudioSource>();
     donePlaying = false;
     for(int i = 0; i < notes.Length; i++) {
       int noteNum = notes[i];
@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     }
     donePlaying = true;
   }
-  // Update is called once per frame
+  
   void Update()
   {
       

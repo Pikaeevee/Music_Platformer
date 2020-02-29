@@ -7,6 +7,7 @@ public class CombatManager : MonoBehaviour
   public GameObject player;
   public GameObject enemy;
   public AudioClip errorSound;
+  public AudioClip correctSound;
 
   public int numNotes;
   private int[] enemySequence; //Array of enemy notes, ranging from 0 to 3
@@ -36,8 +37,17 @@ public class CombatManager : MonoBehaviour
   }
 
   IEnumerator playError() {
+    audioPlayer.clip = errorSound;
     audioPlayer.Play();
     yield return new WaitForSeconds(audioPlayer.clip.length);
+    startEnemyPhase();
+  }
+
+  IEnumerator playCorrect() {
+    audioPlayer.clip = correctSound;
+    audioPlayer.Play();
+    yield return new WaitForSeconds(audioPlayer.clip.length);
+    generateEnemySequence();
     startEnemyPhase();
   }
 
@@ -51,27 +61,35 @@ public class CombatManager : MonoBehaviour
     } else if(playerPhase) {
       if(Input.GetKeyDown("j")) {
         if(enemySequence[playerNotesPlayed] != 0) {
+          playerPhase = false;
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
       } 
       if(Input.GetKeyDown("k")) {
         if(enemySequence[playerNotesPlayed] != 1) {
+          playerPhase = false;
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
       }
       if(Input.GetKeyDown("l")) {
         if(enemySequence[playerNotesPlayed] != 2) {
+          playerPhase = false;
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
       }
       if(Input.GetKeyDown(";")) {
         if(enemySequence[playerNotesPlayed] != 3) {
+          playerPhase = false;
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
+      }
+      if(playerNotesPlayed == numNotes) {
+        playerPhase = false;
+        StartCoroutine(playCorrect());
       }
     }
   }
