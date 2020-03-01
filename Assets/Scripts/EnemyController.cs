@@ -5,25 +5,31 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
   public AudioClip[] sounds;
+  public ParticleSystem notesParticles;
   public float delayTime;
+  public bool donePlaying;
 
   private AudioSource player;
-  // Start is called before the first frame update
   void Start()
   {
-    player = GetComponent<AudioSource>();
+    player = this.GetComponent<AudioSource>();
   }
 
   public IEnumerator PlayNotes(int[] notes) {
+    player = this.GetComponent<AudioSource>();
+    donePlaying = false;
     for(int i = 0; i < notes.Length; i++) {
       int noteNum = notes[i];
       Debug.Log(noteNum);
+      notesParticles.Play();
       player.clip = sounds[noteNum];
       player.Play();
       yield return new WaitForSeconds(player.clip.length + delayTime);
     }
+    notesParticles.Stop();
+    donePlaying = true;
   }
-  // Update is called once per frame
+  
   void Update()
   {
       
