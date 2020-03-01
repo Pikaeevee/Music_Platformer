@@ -30,4 +30,25 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         }
     }
+
+    public void HighJump()
+    {
+        Debug.Log("Activate High Jump");
+        jumpSpeed *= 2;
+        StartCoroutine(JumpBuffDuration());
+    }   
+
+    public void AnotherAbility()
+    {
+        Debug.Log("Some other ability was done");
+    } 
+
+    private IEnumerator JumpBuffDuration()
+    {
+        yield return new WaitForSeconds(10.0f);
+
+        // reset jumpspeed of player 
+        jumpSpeed *= 0.5f;
+        Debug.Log("Deactivate High Jump");
+    }
 }
