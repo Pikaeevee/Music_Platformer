@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
   public AudioClip[] sounds;
+  public ParticleSystem notesParticles;
   public bool canPlay;
   // public float delayTime;
 
@@ -13,13 +14,14 @@ public class PlayerController : MonoBehaviour
   void Start()
   {
     player = GetComponent<AudioSource>();
-    canPlay = true;
   }
 
   IEnumerator PlaySound(AudioClip sound) {
+    notesParticles.Play();
     player.clip = sound;
     player.Play();
-    yield return new WaitForSeconds(player.clip.length);
+    yield return new WaitForSeconds(player.clip.length + 0.2f);
+    notesParticles.Stop();
   }
 
   // Update is called once per frame

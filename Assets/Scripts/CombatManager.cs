@@ -20,23 +20,26 @@ public class CombatManager : MonoBehaviour
   {
     audioPlayer = GetComponent<AudioSource>();
     generateEnemySequence();
+    playerPhase = false;
+    player.GetComponent<PlayerController>().canPlay = false;
     startEnemyPhase();
   }
 
   void generateEnemySequence() {
     enemySequence = new int[numNotes];
     for(int i = 0; i < numNotes; i++) {
-      enemySequence[i] = Random.Range(0, 3);
+      enemySequence[i] = Random.Range(0, 4);
     }
   }
 
   void startEnemyPhase() {
-    playerPhase = false;
-    player.GetComponent<PlayerController>().canPlay = false;
     StartCoroutine(enemy.GetComponent<EnemyController>().PlayNotes(enemySequence));
   }
 
   IEnumerator playError() {
+    playerPhase = false;
+    yield return new WaitForSeconds(0.2f);
+    player.GetComponent<PlayerController>().canPlay = false;
     audioPlayer.clip = errorSound;
     audioPlayer.Play();
     yield return new WaitForSeconds(audioPlayer.clip.length);
@@ -44,6 +47,9 @@ public class CombatManager : MonoBehaviour
   }
 
   IEnumerator playCorrect() {
+    playerPhase = false;
+    yield return new WaitForSeconds(0.2f);
+    player.GetComponent<PlayerController>().canPlay = false;
     audioPlayer.clip = correctSound;
     audioPlayer.Play();
     yield return new WaitForSeconds(audioPlayer.clip.length);
@@ -58,37 +64,33 @@ public class CombatManager : MonoBehaviour
       playerPhase = true;
       player.GetComponent<PlayerController>().canPlay = true;
       playerNotesPlayed = 0;
+      enemy.GetComponent<EnemyController>().donePlaying = false;
     } else if(playerPhase) {
       if(Input.GetKeyDown("j")) {
         if(enemySequence[playerNotesPlayed] != 0) {
-          playerPhase = false;
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
       } 
       if(Input.GetKeyDown("k")) {
         if(enemySequence[playerNotesPlayed] != 1) {
-          playerPhase = false;
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
       }
       if(Input.GetKeyDown("l")) {
         if(enemySequence[playerNotesPlayed] != 2) {
-          playerPhase = false;
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
       }
       if(Input.GetKeyDown(";")) {
         if(enemySequence[playerNotesPlayed] != 3) {
-          playerPhase = false;
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
       }
       if(playerNotesPlayed == numNotes) {
-        playerPhase = false;
         StartCoroutine(playCorrect());
       }
     }

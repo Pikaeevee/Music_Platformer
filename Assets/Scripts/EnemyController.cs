@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
   public AudioClip[] sounds;
+  public ParticleSystem notesParticles;
   public float delayTime;
   public bool donePlaying;
 
@@ -20,10 +21,12 @@ public class EnemyController : MonoBehaviour
     for(int i = 0; i < notes.Length; i++) {
       int noteNum = notes[i];
       Debug.Log(noteNum);
+      notesParticles.Play();
       player.clip = sounds[noteNum];
       player.Play();
       yield return new WaitForSeconds(player.clip.length + delayTime);
     }
+    notesParticles.Stop();
     donePlaying = true;
   }
   
