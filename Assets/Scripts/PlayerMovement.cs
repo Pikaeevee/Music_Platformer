@@ -9,25 +9,34 @@ public class PlayerMovement : MonoBehaviour
 	public float speed = 10.0f; 
 	public float jumpSpeed = 8.0f;
 
-    private Rigidbody2D rb;
+  private Rigidbody2D rb;
 
-    private float velocity; 
+  private float velocity; 
+  private bool onPlatform;
 
-    // Start is called before the first frame update
-    void Start()
+  // Start is called before the first frame update
+  void Start()
+  {
+    rb = GetComponent<Rigidbody2D>(); 
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    velocity = Input.GetAxis("Horizontal") * speed;
+    rb.velocity = new Vector2(velocity, rb.velocity.y); 
+
+    if (Input.GetButtonDown("Jump") && onPlatform)
     {
-        rb = GetComponent<Rigidbody2D>(); 
+      onPlatform = false;
+      rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
     }
+  }
 
-    // Update is called once per frame
-    void Update()
-    {
-        velocity = Input.GetAxis("Horizontal") * speed;
-        rb.velocity = new Vector2(velocity, rb.velocity.y); 
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-        }
+  void OnCollisionEnter2D(Collision2D col) {
+    if(col.gameObject.tag == "Platform") {
+      rb.velocity = new Vector2(rb.velocity.x, 0); 
+      onPlatform = true;
     }
+  }
 }
