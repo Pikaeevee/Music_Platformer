@@ -9,19 +9,26 @@ public class SheetMusicManager : MonoBehaviour
 
   public Sprite[] musicSprites;
   public GameObject sheetMusicImage;
-  private int obtainedMusic;
+  private bool[] obtainedMusic;
 
   void Start()
   {
+    obtainedMusic = new bool[musicSprites.Length];
     showingMusic = false;
     sheetMusicImage.SetActive(false);
   }
 
+  public void setSheetMusicObtained(int i) {
+    obtainedMusic[i] = true;  
+  }
+
   public void displayMusic(int i) {
-    Time.timeScale = 0;
-    showingMusic = true;
-    sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
-    sheetMusicImage.SetActive(true);
+    if(obtainedMusic[i]) {
+      Time.timeScale = 0;
+      showingMusic = true;
+      sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
+      sheetMusicImage.SetActive(true);
+    }
   }
 
   public void hideMusic() {

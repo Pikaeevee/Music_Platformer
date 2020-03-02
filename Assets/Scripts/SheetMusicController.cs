@@ -6,6 +6,7 @@ public class SheetMusicController : MonoBehaviour
 {
   public int musicIndex;
   public GameObject sheetMusicManager;
+  
   // Start is called before the first frame update
   void Start()
   {
@@ -22,8 +23,8 @@ public class SheetMusicController : MonoBehaviour
     if(col.gameObject.tag == "Player") {
       Debug.Log("ahh");
       gameObject.SetActive(false);
+      sheetMusicManager.GetComponent<SheetMusicManager>().setSheetMusicObtained(musicIndex);
       sheetMusicManager.GetComponent<SheetMusicManager>().displayMusic(musicIndex);
-      //SHOW THE SHEET MUSIC HERE
     }
   }
 }
