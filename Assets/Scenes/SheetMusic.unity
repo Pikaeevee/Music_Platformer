@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSprites:
-  - {fileID: 21300000, guid: 42bbb61ea7ab44a55b62da434150de4f, type: 3}
+  - {fileID: 21300000, guid: 1f3f1a824888e4d6d8d382d99419d26e, type: 3}
   sheetMusicImage: {fileID: 900698125}
 --- !u!4 &740578165
 Transform:
@@ -638,7 +638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &900698126
 RectTransform:
   m_ObjectHideFlags: 0
@@ -648,7 +648,7 @@ RectTransform:
   m_GameObject: {fileID: 900698125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.9461274, y: 4.331967, z: 4.331967}
+  m_LocalScale: {x: 7.5, y: 4.5, z: 0}
   m_Children: []
   m_Father: {fileID: 1427645905}
   m_RootOrder: 0
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

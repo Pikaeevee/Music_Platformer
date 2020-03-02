@@ -9,6 +9,7 @@ public class SheetMusicManager : MonoBehaviour
 
   public Sprite[] musicSprites;
   public GameObject sheetMusicImage;
+  private int obtainedMusic;
 
   void Start()
   {
