@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager pm; 
 
+    public enum playerState { playing, fighting }
+
     public int playerLives = 3; 
 
     private void Awake()

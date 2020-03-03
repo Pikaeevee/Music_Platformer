@@ -29,6 +29,7 @@ public class CombatManager : MonoBehaviour
   {
     audioPlayer = GetComponent<AudioSource>();
     generateEnemySequence();
+    player = GameObject.Find("Player");
     playerPhase = false;
     player.GetComponent<PlayerController>().canPlay = false;
     startEnemyPhase();
