@@ -1,19 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class CombatManager : MonoBehaviour
 {
-  public GameObject player;
-  public GameObject enemy;
-  public AudioClip errorSound;
-  public AudioClip correctSound;
+    public GameObject player;
+    public GameObject enemy;
+    public AudioClip errorSound;
+    public AudioClip correctSound;
 
-  public int numNotes;
-  private int[] enemySequence; //Array of enemy notes, ranging from 0 to 3
-  private bool playerPhase;
-  private int playerNotesPlayed;
-  private AudioSource audioPlayer;
+    public int numNotes;
+    private int[] enemySequence; //Array of enemy notes, ranging from 0 to 3
+    private bool playerPhase;
+    private int playerNotesPlayed;
+    private AudioSource audioPlayer;
+
+    
+    public int winCondition = 3; // # of times they have to follow correctly
+    public int loseCondition = 3; // # of times they can fail before losing combat 
+
+    private int winNum = 0; // # of times won so far 
+    private int loseNum = 0; // # of times lost so far 
+   
   
   // Start is called before the first frame update
   void Start()
@@ -37,22 +46,41 @@ public class CombatManager : MonoBehaviour
   }
 
   IEnumerator playError() {
+    loseNum++; // increment # of fails for match 
+    
     playerPhase = false;
     yield return new WaitForSeconds(0.2f);
     player.GetComponent<PlayerController>().canPlay = false;
     audioPlayer.clip = errorSound;
     audioPlayer.Play();
     yield return new WaitForSeconds(audioPlayer.clip.length);
+
+    // check if player lost match
+    if (loseNum >= loseCondition)
+    {
+        PlayerLost();
+        yield break; // stop coroutine 
+    }
     startEnemyPhase();
   }
 
   IEnumerator playCorrect() {
+    winNum++; // increment # of successes for match 
+
     playerPhase = false;
     yield return new WaitForSeconds(0.2f);
     player.GetComponent<PlayerController>().canPlay = false;
     audioPlayer.clip = correctSound;
     audioPlayer.Play();
     yield return new WaitForSeconds(audioPlayer.clip.length);
+
+    // check if player won, stop coroutine if so 
+    if (winNum >= winCondition)
+    {
+        PlayerWon();
+        yield break; 
+    }
+
     generateEnemySequence();
     startEnemyPhase();
   }
@@ -95,4 +123,17 @@ public class CombatManager : MonoBehaviour
       }
     }
   }
+
+    void PlayerWon()
+    {
+        Debug.Log("Defeated enemy!");
+        // TODO: UNLOCK MOVEMENT, DELETE ENEMY(??)
+    }
+
+    void PlayerLost()
+    {
+        Debug.Log("Lost to enemy :(");
+        player.GetComponent<PlayerManager>().LoseLife(); // lose a life 
+        // TODO: UNLOCK MOVEMENT
+    }
 }
