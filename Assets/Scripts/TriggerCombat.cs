@@ -19,6 +19,7 @@ public class TriggerCombat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        cm.enemy = this.gameObject.transform.parent.gameObject;
         cm.Invoke("StartCombat", 0.0f);
     }
 }
