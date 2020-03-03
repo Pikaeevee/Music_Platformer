@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public GameObject enemy;
     public AudioClip errorSound;
     public AudioClip correctSound;
