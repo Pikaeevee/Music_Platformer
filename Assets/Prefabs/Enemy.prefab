@@ -194,10 +194,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: 2ef4711688bd849bb91db446140a88a8, type: 3}
-  - {fileID: 8300000, guid: e1ab0133eb7a346608f1c915c5ad1307, type: 3}
-  - {fileID: 8300000, guid: c4b9e096e5eb445288a9d1ab41273ce3, type: 3}
-  - {fileID: 8300000, guid: 9c07163bf8864495da95cbaa9101f174, type: 3}
+  - {fileID: 8300000, guid: 60d09502301f6d64e87f5c223d8f44cd, type: 3}
+  - {fileID: 8300000, guid: e4e190031adf60045a638cf77fcbb5df, type: 3}
+  - {fileID: 8300000, guid: 305e8d3df9dec31448382f010fb75640, type: 3}
+  - {fileID: 8300000, guid: f73ffc7a6d795da41a4f3dd70fc3eebf, type: 3}
   notesParticles: {fileID: 4935134058047884914}
   delayTime: 0.1
   donePlaying: 0

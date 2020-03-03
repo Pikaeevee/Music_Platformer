@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpSpeed = 8.0f;
     private bool isJumping = false;
 
+    private bool isHighJumping = false; 
+
     private Rigidbody2D rb;
 
     private float velocity; 
@@ -36,7 +38,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void HighJump()
     {
+        if (isHighJumping)
+        {
+            Debug.Log("Already high jumping");
+            return; 
+        }
         Debug.Log("Activate High Jump");
+        isHighJumping = true; 
         // jumpSpeed *= 1.5f;
         rb.gravityScale *= 0.5f;
         StartCoroutine(JumpBuffDuration());
@@ -54,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         // reset jumpspeed of player 
         // jumpSpeed /= 1.5f;
         rb.gravityScale /= 0.5f;
+        isHighJumping = false; 
         Debug.Log("Deactivate High Jump");
     }
 
