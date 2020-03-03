@@ -9,6 +9,8 @@ public class CameraScript : MonoBehaviour
     private float xVelocity = 0.0f;
     private float yVelocity = 0.0f;
 
+    public float smoothTime = 0.3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +22,10 @@ public class CameraScript : MonoBehaviour
     {
         Vector3 playerposition = player.transform.position;
         Vector3 cameraposition = transform.position;
-        cameraposition.x = Mathf.Clamp(Mathf.SmoothDamp(cameraposition.x, playerposition.x, ref xVelocity, 0.01f), 0, 256);
+        cameraposition.x = Mathf.Clamp(Mathf.SmoothDamp(cameraposition.x, playerposition.x, ref xVelocity, smoothTime), 0, 256);
         if(Mathf.Abs(playerposition.y - cameraposition.y) > 2.5f)
         {
-            cameraposition.y = Mathf.SmoothDamp(cameraposition.y, playerposition.y, ref yVelocity, 0.75f);
+            cameraposition.y = Mathf.SmoothDamp(cameraposition.y, playerposition.y, ref yVelocity, smoothTime);
         }
         transform.position = cameraposition;
     }
