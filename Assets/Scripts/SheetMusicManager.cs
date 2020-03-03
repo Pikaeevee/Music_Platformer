@@ -7,6 +7,8 @@ public class SheetMusicManager : MonoBehaviour
 {
   public Sprite[] musicSprites;
   public GameObject sheetMusicImage;
+  public GameObject escapeToCloseText;
+  public GameObject mToMusicText;
   private bool[] obtainedMusic;
   private bool showingMusic;
   private bool recallingMusic;
@@ -18,7 +20,8 @@ public class SheetMusicManager : MonoBehaviour
     obtainedMusic = new bool[musicSprites.Length];
     currentMusicIndex = 0;
     showingMusic = false;
-    // sheetMusicImage.SetActive(false);
+    escapeToCloseText.SetActive(false);
+    mToMusicText.SetActive(false);
   }
 
   public void setSheetMusicObtained(int i) {
@@ -30,7 +33,8 @@ public class SheetMusicManager : MonoBehaviour
       Time.timeScale = 0;
       showingMusic = true;
       sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
-      // sheetMusicImage.SetActive(true);
+      escapeToCloseText.SetActive(true);
+      mToMusicText.SetActive(false);
       sheetMusicImage.GetComponent<Animator>().SetTrigger("FadeUp");
       sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", false);
       currentMusicIndex = i;
@@ -42,6 +46,8 @@ public class SheetMusicManager : MonoBehaviour
       int newIndex = (currentMusicIndex + i) % obtainedMusic.Length;
       if(obtainedMusic[newIndex]) {
         sheetMusicImage.GetComponent<Image>().sprite = musicSprites[newIndex];
+        sheetMusicImage.GetComponent<Animator>().ResetTrigger("NextMusic");
+        sheetMusicImage.GetComponent<Animator>().SetTrigger("NextMusic");
         currentMusicIndex = newIndex;
         return;
       }
@@ -53,6 +59,8 @@ public class SheetMusicManager : MonoBehaviour
       int newIndex = (currentMusicIndex + obtainedMusic.Length - i) % obtainedMusic.Length;
       if(obtainedMusic[newIndex]) {
         sheetMusicImage.GetComponent<Image>().sprite = musicSprites[newIndex];
+        sheetMusicImage.GetComponent<Animator>().ResetTrigger("PrevMusic");
+        sheetMusicImage.GetComponent<Animator>().SetTrigger("PrevMusic");
         currentMusicIndex = newIndex;
         return;
       }
@@ -63,7 +71,8 @@ public class SheetMusicManager : MonoBehaviour
     Time.timeScale = 1;
     showingMusic = false;
     recallingMusic = false;
-    // sheetMusicImage.SetActive(false);
+    escapeToCloseText.SetActive(false);
+    mToMusicText.SetActive(true);
     sheetMusicImage.GetComponent<Animator>().ResetTrigger("FadeUp");
     sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", true);
   }
