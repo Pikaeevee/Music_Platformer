@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	public float speed = 10.0f; 
 	public float jumpSpeed = 8.0f;
+    private bool isJumping = false;
 
     private Rigidbody2D rb;
 
@@ -25,16 +26,18 @@ public class PlayerMovement : MonoBehaviour
         velocity = Input.GetAxis("Horizontal") * speed;
         rb.velocity = new Vector2(velocity, rb.velocity.y); 
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !isJumping)
         {
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            isJumping = true;
         }
     }
 
     public void HighJump()
     {
         Debug.Log("Activate High Jump");
-        jumpSpeed *= 2;
+        // jumpSpeed *= 1.5f;
+        rb.gravityScale *= 0.5f;
         StartCoroutine(JumpBuffDuration());
     }   
 
@@ -48,7 +51,16 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(10.0f);
 
         // reset jumpspeed of player 
-        jumpSpeed *= 0.5f;
+        // jumpSpeed /= 1.5f;
+        rb.gravityScale /= 0.5f;
         Debug.Log("Deactivate High Jump");
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.tag == "Platform") 
+        {
+            isJumping = false;
+        }    
     }
 }

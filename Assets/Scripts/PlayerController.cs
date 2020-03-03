@@ -60,10 +60,16 @@ public class PlayerController : MonoBehaviour
       // Player has about a second to enter next key/note in sequence
       if(Input.inputString.Length > 0) {
         timeoutTime = Time.time + timeoutDuration;
-        userSequence += Input.inputString;
-        foreach(string s in allSequences.Keys) {
+        for(int i = 0; i < Input.inputString.Length; i++)
+        {
+          if("jkl;".Contains(Input.inputString[i].ToString()))
+          {
+            userSequence += Input.inputString[i];
+          }
+        }
+        foreach(string s in playerSequences.Keys) {
           if(userSequence == s) {
-            movementScript.Invoke(allSequences[s], 0.0f);
+            movementScript.Invoke(playerSequences[s], 0.0f);
           }
         }
       }
