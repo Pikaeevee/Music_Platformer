@@ -512,6 +512,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: -4645369092987447060, guid: 496b2facf07b54a9bac6547c2b161ff9,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4841152505901316617, guid: 496b2facf07b54a9bac6547c2b161ff9,
         type: 3}
       propertyPath: m_Name
@@ -1057,13 +1062,14 @@ GameObject:
   - component: {fileID: 743118688}
   - component: {fileID: 743118687}
   - component: {fileID: 743118686}
+  - component: {fileID: 743118689}
   m_Layer: 5
   m_Name: SheetMusicImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &743118686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,9 +1122,28 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -504}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &743118689
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743118685}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b7df386467c64387b8c5bf6f3059d85, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &755434965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1271,11 @@ PrefabInstance:
       propertyPath: sheetMusicManager
       value: 
       objectReference: {fileID: 1211499711}
+    - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
+        type: 3}
+      propertyPath: musicIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7579728219234804282, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
       propertyPath: m_Name
@@ -1352,7 +1382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe3b5637332347b38645ceeff261809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1195278604}
   enemy: {fileID: 1701266810}
   errorSound: {fileID: 8300000, guid: 6c40518a91318466f8eab2f67fc92a60, type: 3}
   correctSound: {fileID: 8300000, guid: 00e9654ac600b4572be6e95b9d7e7653, type: 3}
@@ -1691,6 +1720,7 @@ MonoBehaviour:
   musicSprites:
   - {fileID: 21300000, guid: 1f3f1a824888e4d6d8d382d99419d26e, type: 3}
   - {fileID: 21300000, guid: 39783d5a15bee42f0bd1e69b78b50bc3, type: 3}
+  - {fileID: 21300000, guid: 39783d5a15bee42f0bd1e69b78b50bc3, type: 3}
   sheetMusicImage: {fileID: 743118685}
 --- !u!4 &1211499713
 Transform:
@@ -1878,6 +1908,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1195278604}
+  smoothTime: 0.3
 --- !u!1001 &1390252860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2026,6 +2057,11 @@ PrefabInstance:
       propertyPath: sheetMusicManager
       value: 
       objectReference: {fileID: 1211499711}
+    - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
+        type: 3}
+      propertyPath: musicIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7579728219234804282, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
       propertyPath: m_Name

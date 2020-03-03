@@ -18,7 +18,7 @@ public class SheetMusicManager : MonoBehaviour
     obtainedMusic = new bool[musicSprites.Length];
     currentMusicIndex = 0;
     showingMusic = false;
-    sheetMusicImage.SetActive(false);
+    // sheetMusicImage.SetActive(false);
   }
 
   public void setSheetMusicObtained(int i) {
@@ -30,7 +30,9 @@ public class SheetMusicManager : MonoBehaviour
       Time.timeScale = 0;
       showingMusic = true;
       sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
-      sheetMusicImage.SetActive(true);
+      // sheetMusicImage.SetActive(true);
+      sheetMusicImage.GetComponent<Animator>().SetTrigger("FadeUp");
+      sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", false);
       currentMusicIndex = i;
     }
   }
@@ -61,7 +63,9 @@ public class SheetMusicManager : MonoBehaviour
     Time.timeScale = 1;
     showingMusic = false;
     recallingMusic = false;
-    sheetMusicImage.SetActive(false);
+    // sheetMusicImage.SetActive(false);
+    sheetMusicImage.GetComponent<Animator>().ResetTrigger("FadeUp");
+    sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", true);
   }
 
   void Update()
