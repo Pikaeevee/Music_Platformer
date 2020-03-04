@@ -10,7 +10,11 @@ public class PlayerMovement : MonoBehaviour
 	public float jumpSpeed = 8.0f;
     private bool isJumping = false;
 
-    private bool isHighJumping = false; 
+    private bool isHighJumping = false;
+
+    // vars related to jumping 
+    [SerializeField] private Vector2 howCloseToJump;
+    public float bounceReturn = 0;
 
     private Rigidbody2D rb;
 
@@ -38,6 +42,30 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    /*
+    private void Jump()
+    {
+        //print("Attempting to Jump!");
+        //Raycast to make sure we can jump
+        RaycastHit2D results;
+        LayerMask mask = LayerMask.GetMask("Ground");
+        results = Physics2D.Raycast(transform.position, howCloseToJump.normalized, howCloseToJump.magnitude, mask);
+        if (results.collider)
+        {
+            //print("We correctly collided!");
+            //We hit something!
+            // assuming ball is rigidbody
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Abs(rb.velocity.y) * bounceReturn);
+            rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+            //jumpcooldown = jumpWait;
+        }
+        else
+        {
+            //print("No collider hit!");
+        }
+    }
+    */
 
     public void HighJump()
     {
