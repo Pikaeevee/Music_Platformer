@@ -7,7 +7,7 @@ public enum PlayerState { playing, fighting }
 
 public class PlayerManager : MonoBehaviour
 {
-    private static PlayerManager pm; 
+    public static PlayerManager pm; 
 
     public PlayerState playState = PlayerState.playing;
 
