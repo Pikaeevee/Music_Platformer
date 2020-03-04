@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /*
     private void Jump()
     {
         //print("Attempting to Jump!");
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
             //print("No collider hit!");
         }
     }
+    */
 
     public void HighJump()
     {

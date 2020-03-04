@@ -4975,6 +4975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpSpeed: 8
+  howCloseToJump: {x: 0, y: -0.75}
+  bounceReturn: 0
 --- !u!50 &-4645369092987447060
 Rigidbody2D:
   serializedVersion: 4
