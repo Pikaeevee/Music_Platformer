@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
   public AudioClip[] sounds;
   public ParticleSystem notesParticles;
-  public bool canPlay;
+  public bool canPlay = false;
   // public float delayTime;
 
   private AudioSource player;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     allSequences.Add("jkl;", "HighJump");
     allSequences.Add("jjl;", "AnotherAbility");
     allSequences.Add("k;l", "AnotherAbility");
-    playerSequences.Add("jkl;", "HighJump");
+    // playerSequences.Add("jkl;", "HighJump");
   }
 
   IEnumerator PlaySound(AudioClip sound) {
@@ -78,6 +78,18 @@ public class PlayerController : MonoBehaviour
         else if(Time.time > timeoutTime && userSequence.Length > 0) {
           userSequence = "";
         }
+      }
+    }
+  }
+
+  public void AddAbility(string ability)
+  {
+    foreach(string s in allSequences.Keys)
+    {
+      if(ability == allSequences[s])
+      {
+        playerSequences.Add(s, allSequences[s]);
+        break;
       }
     }
   }
