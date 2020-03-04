@@ -144,6 +144,8 @@ public class CombatManager : MonoBehaviour
     void PlayerLost()
     {
         Debug.Log("Lost to enemy :(");
+        winNum = 0;
+        loseNum = 0; 
         player.GetComponent<PlayerManager>().LoseLife(); // lose a life 
         // TODO: UNLOCK MOVEMENT
         PlayerManager.pm.playState = PlayerState.playing;
