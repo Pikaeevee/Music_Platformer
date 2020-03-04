@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
-	
+	public bool canMove = true;
 	public float speed = 10.0f; 
 	public float jumpSpeed = 8.0f;
     private bool isJumping = false;
@@ -25,14 +25,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity = Input.GetAxis("Horizontal") * speed;
-        rb.velocity = new Vector2(velocity, rb.velocity.y); 
-
-        if (Input.GetButtonDown("Jump") && !isJumping)
+        if(canMove)
         {
-            rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-            // rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            isJumping = true;
+            velocity = Input.GetAxis("Horizontal") * speed;
+            rb.velocity = new Vector2(velocity, rb.velocity.y); 
+
+            if (Input.GetButtonDown("Jump") && !isJumping)
+            {
+                rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+                // rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                isJumping = true;
+            }
         }
     }
 
@@ -46,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Activate High Jump");
         isHighJumping = true; 
         // jumpSpeed *= 1.5f;
-        rb.gravityScale *= 0.5f;
+        rb.gravityScale *= 0.3f;
         StartCoroutine(JumpBuffDuration());
     }   
 
@@ -61,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
         // reset jumpspeed of player 
         // jumpSpeed /= 1.5f;
-        rb.gravityScale /= 0.5f;
+        rb.gravityScale /= 0.3f;
         isHighJumping = false; 
         Debug.Log("Deactivate High Jump");
     }
