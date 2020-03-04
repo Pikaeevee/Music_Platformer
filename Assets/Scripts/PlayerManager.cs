@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum PlayerState { playing, fighting }
+
 public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager pm; 
 
-    public enum playerState { playing, fighting }
+    public PlayerState playState = PlayerState.playing;
 
     public int playerLives = 3; 
 

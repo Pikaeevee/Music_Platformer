@@ -58,23 +58,26 @@ public class PlayerController : MonoBehaviour
       }
       // Sequence Handling
       // Player has about a second to enter next key/note in sequence
-      if(Input.inputString.Length > 0) {
-        timeoutTime = Time.time + timeoutDuration;
-        for(int i = 0; i < Input.inputString.Length; i++)
-        {
-          if("jkl;".Contains(Input.inputString[i].ToString()))
+      if(PlayerManager.pm.playState == PlayerState.playing)
+      {
+        if(Input.inputString.Length > 0) {
+          timeoutTime = Time.time + timeoutDuration;
+          for(int i = 0; i < Input.inputString.Length; i++)
           {
-            userSequence += Input.inputString[i];
+            if("jkl;".Contains(Input.inputString[i].ToString()))
+            {
+              userSequence += Input.inputString[i];
+            }
+          }
+          foreach(string s in playerSequences.Keys) {
+            if(userSequence == s) {
+              movementScript.Invoke(playerSequences[s], 0.0f);
+            }
           }
         }
-        foreach(string s in playerSequences.Keys) {
-          if(userSequence == s) {
-            movementScript.Invoke(playerSequences[s], 0.0f);
-          }
+        else if(Time.time > timeoutTime && userSequence.Length > 0) {
+          userSequence = "";
         }
-      }
-      else if(Time.time > timeoutTime && userSequence.Length > 0) {
-        userSequence = "";
       }
     }
   }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
-	public bool canMove = true;
 	public float speed = 10.0f; 
 	public float jumpSpeed = 8.0f;
     private bool isJumping = false;
@@ -29,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canMove)
+        if(PlayerManager.pm.playState == PlayerState.playing)
         {
             velocity = Input.GetAxis("Horizontal") * speed;
             rb.velocity = new Vector2(velocity, rb.velocity.y); 

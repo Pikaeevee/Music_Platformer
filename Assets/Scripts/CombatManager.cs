@@ -38,7 +38,7 @@ public class CombatManager : MonoBehaviour
         generateEnemySequence();
         playerPhase = false;
         player.GetComponent<PlayerController>().canPlay = false;
-        player.GetComponent<PlayerMovement>().canMove = false;
+        PlayerManager.pm.playState = PlayerState.fighting;
         startEnemyPhase();
     }
 
@@ -136,7 +136,8 @@ public class CombatManager : MonoBehaviour
     {
         Debug.Log("Defeated enemy!");
         // TODO: UNLOCK MOVEMENT, DELETE ENEMY(??)
-        player.GetComponent<PlayerMovement>().canMove = true;
+        PlayerManager.pm.playState = PlayerState.playing;
+        player.GetComponent<PlayerController>().canPlay = true;
         enemy.SetActive(false);
     }
 
@@ -145,6 +146,7 @@ public class CombatManager : MonoBehaviour
         Debug.Log("Lost to enemy :(");
         player.GetComponent<PlayerManager>().LoseLife(); // lose a life 
         // TODO: UNLOCK MOVEMENT
-        player.GetComponent<PlayerMovement>().canMove = true;
+        PlayerManager.pm.playState = PlayerState.playing;
+        player.GetComponent<PlayerController>().canPlay = true;
     }
 }
