@@ -25,6 +25,24 @@ public class SheetMusicController : MonoBehaviour
       gameObject.SetActive(false);
       sheetMusicManager.GetComponent<SheetMusicManager>().setSheetMusicObtained(musicIndex);
       sheetMusicManager.GetComponent<SheetMusicManager>().displayMusic(musicIndex);
+      AddMusic();
+    }
+  }
+
+  private void AddMusic()
+  {
+    switch(musicIndex)
+    {
+      // Melodica Tutorial
+      case 0:
+        PlayerManager.pm.gameObject.GetComponent<PlayerController>().canPlay = true;
+        break;
+      // High jump ability
+      case 1:
+        PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("HighJump");
+        break;
+      default:
+        break;
     }
   }
 }
