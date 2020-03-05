@@ -7,7 +7,11 @@ public class PlayerMovement : MonoBehaviour
 	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
 	public float speed = 10.0f; 
 	public float jumpSpeed = 8.0f;
+
     private bool isJumping = false;
+
+    private bool isFalling = false; 
+
 
     private bool isHighJumping = false;
 
@@ -31,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
         if(PlayerManager.pm.playState == PlayerState.playing)
         {
             velocity = Input.GetAxis("Horizontal") * speed;
+            // decrease how much player can move in the air 
+            if (isJumping)
+            {
+                velocity *= 0.75f;
+            }
             rb.velocity = new Vector2(velocity, rb.velocity.y); 
 
             if (Input.GetButtonDown("Jump") && !isJumping)
@@ -39,6 +48,17 @@ public class PlayerMovement : MonoBehaviour
                 // rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 isJumping = true;
             }
+        }
+        // check for falling, multiply gravity 
+        if (!isFalling && rb.velocity.y < 0)
+        {
+            isFalling = true;
+            rb.gravityScale *= 2; 
+        }
+        else if (isFalling && rb.velocity.y >= 0)
+        {
+            isFalling = false;
+            rb.gravityScale /= 2; 
         }
     }
 
@@ -75,8 +95,8 @@ public class PlayerMovement : MonoBehaviour
         }
         Debug.Log("Activate High Jump");
         isHighJumping = true; 
-        // jumpSpeed *= 1.5f;
-        rb.gravityScale *= 0.3f;
+        jumpSpeed *= 1.5f;
+        //rb.gravityScale *= 0.3f;
         StartCoroutine(JumpBuffDuration());
     }   
 
