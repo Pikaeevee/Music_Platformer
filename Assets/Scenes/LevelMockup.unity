@@ -504,32 +504,22 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4645369092987447060, guid: 496b2facf07b54a9bac6547c2b161ff9,
         type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4645369092987447060, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_UseAutoMass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4645369092987447060, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: -4645369092987447060, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4645369092987447060, guid: 496b2facf07b54a9bac6547c2b161ff9,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1809980367986361793, guid: 496b2facf07b54a9bac6547c2b161ff9,
+        type: 3}
+      propertyPath: jumpSpeed
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4841152505901316617, guid: 496b2facf07b54a9bac6547c2b161ff9,
         type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4841152505901316617, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4841152505901316620, guid: 496b2facf07b54a9bac6547c2b161ff9,
@@ -586,16 +576,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4841152505901316622, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: canPlay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7241177923185523574, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 496b2facf07b54a9bac6547c2b161ff9, type: 3}
