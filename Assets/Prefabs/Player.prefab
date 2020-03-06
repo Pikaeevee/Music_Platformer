@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4841152504607029560}
   - component: {fileID: 4841152504607029563}
   - component: {fileID: 4841152504607029562}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MusicNotes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4774,9 +4774,9 @@ GameObject:
   - component: {fileID: -4645369092987447060}
   - component: {fileID: 7241177923185523574}
   - component: {fileID: 8711140589833161482}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4975,6 +4975,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpSpeed: 8
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   howCloseToJump: {x: 0, y: -0.75}
   bounceReturn: 0
 --- !u!50 &-4645369092987447060

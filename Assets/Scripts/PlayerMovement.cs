@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
 	public float speed = 10.0f; 
 	public float jumpSpeed = 8.0f;
+    public LayerMask groundLayer; 
+
 
     private bool isJumping = false;
 
@@ -27,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        groundLayer = LayerMask.GetMask("Ground"); 
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y); 
         }
-        if(PlayerManager.pm.playState == PlayerState.playing)
+        if (PlayerManager.pm.playState == PlayerState.playing)
         {
             velocity = Input.GetAxis("Horizontal") * speed;
             // decrease how much player can move in the air 
@@ -49,47 +52,49 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && !isJumping)
             {
-                rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+                Jump();
+                //rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
                 // rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-                isJumping = true;
             }
         }
         // check for falling, multiply gravity 
-        if (!isFalling && rb.velocity.y < 0)
+        
+        if (!isFalling && !isGrounded())
         {
             isFalling = true;
             rb.gravityScale *= 2; 
         }
-        else if (isFalling && rb.velocity.y >= 0)
+        else if (isFalling && isGrounded())
         {
             isFalling = false;
-            rb.gravityScale /= 2; 
+            rb.gravityScale /= 2;
         }
+        
     }
 
-    /*
+    bool isGrounded()
+    {
+        //Debug.Log("checking if is grounded");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.0f, groundLayer);
+        if (hit.collider != null)
+        {
+            //Debug.Log("player is grounded");
+            return true; 
+        }
+
+        return false; 
+    }
+
+   
     private void Jump()
     {
-        //print("Attempting to Jump!");
-        //Raycast to make sure we can jump
-        RaycastHit2D results;
-        LayerMask mask = LayerMask.GetMask("Ground");
-        results = Physics2D.Raycast(transform.position, howCloseToJump.normalized, howCloseToJump.magnitude, mask);
-        if (results.collider)
+        if (isGrounded())
         {
-            //print("We correctly collided!");
-            //We hit something!
-            // assuming ball is rigidbody
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Abs(rb.velocity.y) * bounceReturn);
+            Debug.Log("jumping");
+            isJumping = true;
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
-            //jumpcooldown = jumpWait;
-        }
-        else
-        {
-            //print("No collider hit!");
         }
     }
-    */
 
     public void HighJump()
     {
@@ -115,8 +120,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(10.0f);
 
         // reset jumpspeed of player 
-        // jumpSpeed /= 1.5f;
-        rb.gravityScale /= 0.3f;
+        jumpSpeed /= 1.5f;
+        //rb.gravityScale /= 0.3f;
         isHighJumping = false; 
         Debug.Log("Deactivate High Jump");
     }
