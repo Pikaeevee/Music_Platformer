@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
 
     public int playerLives = 3; 
 
+    public string[] noteKeys = {"i", "j", "k", "l"};
+
     private void Awake()
     {
         // Singleton behavior 
@@ -36,6 +38,14 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    //Returns index of the key pressed; if key not in array, return -1
+    public int getIndexOfKey(string s) {
+      for(int i = 0; i < noteKeys.Length; i++) {
+        if(noteKeys[i] == s) return i;
+      }
+      return -1;
     }
 
     public void LoseLife()

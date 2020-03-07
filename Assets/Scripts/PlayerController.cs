@@ -64,6 +64,8 @@ public class PlayerController : MonoBehaviour
       if(Input.GetKeyDown(";")) {
         PlaySound(3);
       }
+
+      
       // Sequence Handling
       // Player has about a second to enter next key/note in sequence
       if(PlayerManager.pm.playState == PlayerState.playing)
