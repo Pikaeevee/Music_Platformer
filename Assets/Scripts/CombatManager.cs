@@ -28,9 +28,7 @@ public class CombatManager : MonoBehaviour
   void Start()
   {
     audioPlayer = GetComponent<AudioSource>();
-    
     player = GameObject.Find("Player");
-    
   }
 
     public void StartCombat()

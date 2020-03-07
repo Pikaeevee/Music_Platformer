@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MusicNotes
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: da301730807a54ff08de8d4531f0f4a3, type: 3}
+    - {fileID: 2800000, guid: a21789f6f6a404941be68ecde765e656, type: 3}
+    - {fileID: 2800000, guid: b7f207ee51f4a4bc39b586ca4907122e, type: 3}
+    - {fileID: 2800000, guid: 2bdd1af2406f547f1af28cea39166c04, type: 3}
+    totalSpriteSurfaceArea: 160000
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: da301730807a54ff08de8d4531f0f4a3, type: 3}
+  - {fileID: 21300000, guid: 2bdd1af2406f547f1af28cea39166c04, type: 3}
+  - {fileID: 21300000, guid: a21789f6f6a404941be68ecde765e656, type: 3}
+  - {fileID: 21300000, guid: b7f207ee51f4a4bc39b586ca4907122e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - MusicNoteB
+  - MusicNoteG
+  - MusicNoteC
+  - MusicNoteE
+  m_Tag: MusicNotes
+  m_IsVariant: 0

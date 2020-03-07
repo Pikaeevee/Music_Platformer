@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
   public AudioClip[] sounds;
-  public ParticleSystem notesParticles;
+  public ParticleSystem[] particleSystems;
+  // public ParticleSystem notesParticles;
   public bool canPlay = false;
   // public float delayTime;
 
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
   private string userSequence = "";
   private PlayerMovement movementScript;
 
+  private int playedNotes = 0;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -32,12 +35,17 @@ public class PlayerController : MonoBehaviour
     // playerSequences.Add("jkl;", "HighJump");
   }
 
-  IEnumerator PlaySound(AudioClip sound) {
-    notesParticles.Play();
-    player.clip = sound;
+  IEnumerator PlayParticleEffect(int i) {
+    particleSystems[i].Play();
+    yield return new WaitForSeconds(0.5f);
+    particleSystems[i].Stop();
+  }
+
+  void PlaySound(int i) {
+    StartCoroutine(PlayParticleEffect(i));
+    playedNotes++;
+    player.clip = sounds[i];
     player.Play();
-    yield return new WaitForSeconds(player.clip.length + 0.2f);
-    notesParticles.Stop();
   }
 
   // Update is called once per frame
@@ -45,16 +53,16 @@ public class PlayerController : MonoBehaviour
   {
     if(canPlay) {
       if(Input.GetKeyDown("j")) {
-        StartCoroutine(PlaySound(sounds[0]));
+        PlaySound(0);
       } 
       if(Input.GetKeyDown("k")) {
-        StartCoroutine(PlaySound(sounds[1]));
+        PlaySound(1);
       }
       if(Input.GetKeyDown("l")) {
-        StartCoroutine(PlaySound(sounds[2]));
+        PlaySound(2);
       }
       if(Input.GetKeyDown(";")) {
-        StartCoroutine(PlaySound(sounds[3]));
+        PlaySound(3);
       }
       // Sequence Handling
       // Player has about a second to enter next key/note in sequence

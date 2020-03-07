@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
-	public float speed = 10.0f; 
-	public float jumpSpeed = 8.0f;
+    public float speed = 10.0f; 
+    public float jumpSpeed = 8.0f;
     public LayerMask groundLayer; 
 
 
@@ -74,11 +74,11 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded()
     {
-        //Debug.Log("checking if is grounded");
+        // Debug.Log("checking if is grounded");
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.0f, groundLayer);
         if (hit.collider != null)
         {
-            //Debug.Log("player is grounded");
+            // Debug.Log("player is grounded");
             return true; 
         }
 
