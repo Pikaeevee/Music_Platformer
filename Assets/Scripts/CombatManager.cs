@@ -40,6 +40,8 @@ public class CombatManager : MonoBehaviour
 
   public void StartCombat()
   {
+      winNum = 0;
+      loseNum = 0;
       generateEnemySequence();
       mainCameraScript.setRelPos(enemy.transform.position.x);
       alert.GetComponent<Animator>().ResetTrigger("EnemyEncounter");
