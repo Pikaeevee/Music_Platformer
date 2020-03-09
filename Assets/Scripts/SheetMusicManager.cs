@@ -9,19 +9,26 @@ public class SheetMusicManager : MonoBehaviour
   public GameObject sheetMusicImage;
   public GameObject escapeToCloseText;
   public GameObject mToMusicText;
+  public bool canShowMusic;
   private bool[] obtainedMusic;
   private bool showingMusic;
   private bool recallingMusic;
   private int currentMusicIndex;
   private bool can_switch;
 
+  private GameObject combatUI;
+  private GameObject sheetMusicUI;
+
   void Start()
   {
+    canShowMusic = true;
     obtainedMusic = new bool[musicSprites.Length];
     currentMusicIndex = 0;
     showingMusic = false;
     escapeToCloseText.SetActive(false);
     mToMusicText.SetActive(false);
+    combatUI = GameObject.Find("Combat UI");
+    sheetMusicUI = GameObject.Find("SheetMusicUI");
   }
 
   public void setSheetMusicObtained(int i) {
@@ -31,6 +38,7 @@ public class SheetMusicManager : MonoBehaviour
   public void displayMusic(int i) {
     if(obtainedMusic[i]) {
       Time.timeScale = 0;
+      combatUI.SetActive(false);
       showingMusic = true;
       sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
       sheetMusicImage.SetActive(true);
@@ -70,6 +78,7 @@ public class SheetMusicManager : MonoBehaviour
 
   public void hideMusic() {
     Time.timeScale = 1;
+    combatUI.SetActive(true);
     showingMusic = false;
     recallingMusic = false;
     escapeToCloseText.SetActive(false);
@@ -80,7 +89,13 @@ public class SheetMusicManager : MonoBehaviour
 
   void Update()
   {
-    if(!showingMusic && Input.GetKeyDown("m")) {
+    if(!canShowMusic) {
+      sheetMusicUI.SetActive(false);
+    } else {
+      sheetMusicUI.SetActive(true);
+    }
+    
+    if(!showingMusic && canShowMusic && Input.GetKeyDown("m")) {
       Debug.Log("Showing Music");
       recallingMusic = true;
       displayMusic(0);

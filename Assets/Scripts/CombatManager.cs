@@ -28,7 +28,8 @@ public class CombatManager : MonoBehaviour
     public GameObject alert;
     public GameObject playerIndicator;
 
-    public CameraScript mainCameraScript;
+    private CameraScript mainCameraScript;
+    private SheetMusicManager sheetMusicManager;
   
   // Start is called before the first frame update
   void Start()
@@ -36,12 +37,12 @@ public class CombatManager : MonoBehaviour
     audioPlayer = GetComponent<AudioSource>();
     player = GameObject.Find("Player");
     mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+    sheetMusicManager = GameObject.Find("SheetMusicManager").GetComponent<SheetMusicManager>();
   }
 
   public void StartCombat()
   {
-      winNum = 0;
-      loseNum = 0;
+      sheetMusicManager.canShowMusic = false;
       generateEnemySequence();
       mainCameraScript.setRelPos(enemy.transform.position.x);
       alert.GetComponent<Animator>().ResetTrigger("EnemyEncounter");
@@ -178,8 +179,11 @@ public class CombatManager : MonoBehaviour
     void PlayerWon()
     {
         Debug.Log("Defeated enemy!");
+        winNum = 0;
+        loseNum = 0; 
         playerIndicator.SetActive(false);
         mainCameraScript.resetRelPos();
+        sheetMusicManager.canShowMusic = true;
         // TODO: UNLOCK MOVEMENT, DELETE ENEMY(??)
         player.GetComponent<PlayerManager>().resetLives();
         PlayerManager.pm.playState = PlayerState.playing;
@@ -194,6 +198,7 @@ public class CombatManager : MonoBehaviour
         winNum = 0;
         loseNum = 0; 
         mainCameraScript.resetRelPos();
+        sheetMusicManager.canShowMusic = true;
         player.GetComponent<PlayerManager>().LoseLife(); // lose a life 
         PlayerManager.pm.playState = PlayerState.playing;
         player.GetComponent<PlayerController>().canPlay = true;

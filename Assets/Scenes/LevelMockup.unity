@@ -1481,7 +1481,6 @@ MonoBehaviour:
   loseCondition: 3
   alert: {fileID: 589853660}
   playerIndicator: {fileID: 598542961}
-  mainCameraScript: {fileID: 0}
 --- !u!82 &884204310
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1894,6 +1893,7 @@ MonoBehaviour:
   sheetMusicImage: {fileID: 743118685}
   escapeToCloseText: {fileID: 1961102156}
   mToMusicText: {fileID: 914021213}
+  canShowMusic: 0
 --- !u!4 &1211499713
 Transform:
   m_ObjectHideFlags: 0
@@ -3630,6 +3630,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935134057563687393, guid: 0a6ada20ddec246619db59e3736d3d19,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4935134057563687396, guid: 0a6ada20ddec246619db59e3736d3d19,
         type: 3}
