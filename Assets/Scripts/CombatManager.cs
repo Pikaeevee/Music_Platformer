@@ -47,6 +47,8 @@ public class CombatManager : MonoBehaviour
 
   IEnumerator triggerPrebattleDialogue() {
     //TODO: do dialogue stuff here
+    yield return new WaitForSeconds(1f);
+    StartCoroutine(enemy.GetComponent<EnemyController>().ShowDialogue());
     yield return new WaitForSeconds(3.0f);
     startEnemyPhase();
   }

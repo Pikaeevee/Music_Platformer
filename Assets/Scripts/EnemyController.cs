@@ -9,13 +9,23 @@ public class EnemyController : MonoBehaviour
   public float delayTime;
   public bool donePlaying;
   public GameObject indicator;
+  public GameObject dialogueBox;
   public CombatManager combatManager;
+  public float dialogueTime = 2.0f;
 
   private AudioSource player;
   void Start()
   {
     player = this.GetComponent<AudioSource>();
     indicator.SetActive(false);
+    dialogueBox.SetActive(false);
+  }
+  
+  //TODO: edit this function for better dialogue support
+  public IEnumerator ShowDialogue() {
+    dialogueBox.SetActive(true);
+    yield return new WaitForSeconds(dialogueTime);
+    dialogueBox.SetActive(false);
   }
 
   public IEnumerator PlayNotes(int[] notes) {
