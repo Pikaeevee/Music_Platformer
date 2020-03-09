@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
   {
     player = GetComponent<AudioSource>();
     movementScript = GetComponent<PlayerMovement>();
-    allSequences.Add("jkl;", "HighJump");
-    allSequences.Add("jjl;", "AnotherAbility");
-    allSequences.Add("k;l", "AnotherAbility");
+    allSequences.Add("ijkl", "HighJump");
+    allSequences.Add("iikl", "AnotherAbility");
+    allSequences.Add("jlk", "AnotherAbility");
     // playerSequences.Add("jkl;", "HighJump");
   }
 
@@ -52,17 +52,9 @@ public class PlayerController : MonoBehaviour
   void Update()
   {
     if(canPlay) {
-      if(Input.GetKeyDown("j")) {
-        PlaySound(0);
-      } 
-      if(Input.GetKeyDown("k")) {
-        PlaySound(1);
-      }
-      if(Input.GetKeyDown("l")) {
-        PlaySound(2);
-      }
-      if(Input.GetKeyDown(";")) {
-        PlaySound(3);
+      int ind = PlayerManager.pm.getIndexOfKey();
+      if(ind != -1) {
+        PlaySound(ind);
       }
 
       
@@ -74,7 +66,7 @@ public class PlayerController : MonoBehaviour
           timeoutTime = Time.time + timeoutDuration;
           for(int i = 0; i < Input.inputString.Length; i++)
           {
-            if("jkl;".Contains(Input.inputString[i].ToString()))
+            if("ijkl".Contains(Input.inputString[i].ToString()))
             {
               userSequence += Input.inputString[i];
             }

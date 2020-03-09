@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement; 
 
 public class CombatManager : MonoBehaviour
@@ -22,7 +23,9 @@ public class CombatManager : MonoBehaviour
 
     private int winNum = 0; // # of times won so far 
     private int loseNum = 0; // # of times lost so far 
-   
+
+    public GameObject playerHealth;
+    public GameObject alert;
   
   // Start is called before the first frame update
   void Start()
@@ -34,6 +37,9 @@ public class CombatManager : MonoBehaviour
     public void StartCombat()
     {
         generateEnemySequence();
+        playerHealth.SetActive(true);
+        alert.GetComponent<Animator>().ResetTrigger("EnemyEncounter");
+        alert.GetComponent<Animator>().SetTrigger("EnemyEncounter");
         playerPhase = false;
         player.GetComponent<PlayerController>().canPlay = false;
         PlayerManager.pm.playState = PlayerState.fighting;
@@ -100,30 +106,38 @@ public class CombatManager : MonoBehaviour
       playerNotesPlayed = 0;
       enemy.GetComponent<EnemyController>().donePlaying = false;
     } else if(playerPhase) {
-      if(Input.GetKeyDown("j")) {
+      int ind = PlayerManager.pm.getIndexOfKey();
+      if(ind != -1) {
         if(enemySequence[playerNotesPlayed] != 0) {
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
-      } 
-      if(Input.GetKeyDown("k")) {
-        if(enemySequence[playerNotesPlayed] != 1) {
-          StartCoroutine(playError());
-        }
-        playerNotesPlayed++;
       }
-      if(Input.GetKeyDown("l")) {
-        if(enemySequence[playerNotesPlayed] != 2) {
-          StartCoroutine(playError());
-        }
-        playerNotesPlayed++;
-      }
-      if(Input.GetKeyDown(";")) {
-        if(enemySequence[playerNotesPlayed] != 3) {
-          StartCoroutine(playError());
-        }
-        playerNotesPlayed++;
-      }
+      // TODO: delete this code if combat works out
+      // if(Input.GetKeyDown("j")) {
+      //   if(enemySequence[playerNotesPlayed] != 0) {
+      //     StartCoroutine(playError());
+      //   }
+      //   playerNotesPlayed++;
+      // } 
+      // if(Input.GetKeyDown("k")) {
+      //   if(enemySequence[playerNotesPlayed] != 1) {
+      //     StartCoroutine(playError());
+      //   }
+      //   playerNotesPlayed++;
+      // }
+      // if(Input.GetKeyDown("l")) {
+      //   if(enemySequence[playerNotesPlayed] != 2) {
+      //     StartCoroutine(playError());
+      //   }
+      //   playerNotesPlayed++;
+      // }
+      // if(Input.GetKeyDown(";")) {
+      //   if(enemySequence[playerNotesPlayed] != 3) {
+      //     StartCoroutine(playError());
+      //   }
+      //   playerNotesPlayed++;
+      // }
       if(playerNotesPlayed == numNotes) {
         StartCoroutine(playCorrect());
       }
@@ -133,6 +147,7 @@ public class CombatManager : MonoBehaviour
     void PlayerWon()
     {
         Debug.Log("Defeated enemy!");
+        playerHealth.SetActive(false);
         // TODO: UNLOCK MOVEMENT, DELETE ENEMY(??)
         PlayerManager.pm.playState = PlayerState.playing;
         player.GetComponent<PlayerController>().canPlay = true;

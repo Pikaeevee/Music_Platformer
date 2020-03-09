@@ -33,6 +33,7 @@ public class SheetMusicManager : MonoBehaviour
       Time.timeScale = 0;
       showingMusic = true;
       sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
+      sheetMusicImage.SetActive(true);
       escapeToCloseText.SetActive(true);
       mToMusicText.SetActive(false);
       sheetMusicImage.GetComponent<Animator>().SetTrigger("FadeUp");

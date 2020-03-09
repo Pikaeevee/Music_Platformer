@@ -41,9 +41,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     //Returns index of the key pressed; if key not in array, return -1
-    public int getIndexOfKey(string s) {
+    public int getIndexOfKey() {
       for(int i = 0; i < noteKeys.Length; i++) {
-        if(noteKeys[i] == s) return i;
+        if(Input.GetKeyDown(noteKeys[i])) return i;
       }
       return -1;
     }
