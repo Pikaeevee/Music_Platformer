@@ -1481,6 +1481,7 @@ MonoBehaviour:
   loseCondition: 3
   alert: {fileID: 589853660}
   playerIndicator: {fileID: 598542961}
+  mainCameraScript: {fileID: 0}
 --- !u!82 &884204310
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2899,7 +2900,7 @@ RectTransform:
   - {fileID: 1961102159}
   - {fileID: 914021214}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3216,7 +3217,7 @@ RectTransform:
   - {fileID: 589853661}
   - {fileID: 1665966563}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3633,7 +3634,7 @@ PrefabInstance:
     - target: {fileID: 4935134057563687396, guid: 0a6ada20ddec246619db59e3736d3d19,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8
+      value: 24.23
       objectReference: {fileID: 0}
     - target: {fileID: 4935134057563687396, guid: 0a6ada20ddec246619db59e3736d3d19,
         type: 3}

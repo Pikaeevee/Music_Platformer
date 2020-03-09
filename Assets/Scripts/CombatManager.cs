@@ -27,17 +27,21 @@ public class CombatManager : MonoBehaviour
 
     public GameObject alert;
     public GameObject playerIndicator;
+
+    public CameraScript mainCameraScript;
   
   // Start is called before the first frame update
   void Start()
   {
     audioPlayer = GetComponent<AudioSource>();
     player = GameObject.Find("Player");
+    mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
   }
 
   public void StartCombat()
   {
       generateEnemySequence();
+      mainCameraScript.setRelPos(enemy.transform.position.x);
       alert.GetComponent<Animator>().ResetTrigger("EnemyEncounter");
       alert.GetComponent<Animator>().SetTrigger("EnemyEncounter");
       playerPhase = false;
@@ -75,6 +79,7 @@ public class CombatManager : MonoBehaviour
   IEnumerator playError() {
     loseNum++; // increment # of fails for match 
     playerPhase = false;
+    StartCoroutine(mainCameraScript.shakeCamera());
     yield return new WaitForSeconds(0.2f);
     player.GetComponent<PlayerController>().canPlay = false;
     audioPlayer.clip = errorSound;
@@ -126,8 +131,9 @@ public class CombatManager : MonoBehaviour
       if(ind != -1) {
         if(enemySequence[playerNotesPlayed] != ind) {
           StartCoroutine(playError());
+        } else {
+          playerNotesPlayed++;
         }
-        playerNotesPlayed++;
       }
       // TODO: delete this code if combat works out
       // if(Input.GetKeyDown("j")) {
@@ -171,6 +177,7 @@ public class CombatManager : MonoBehaviour
     {
         Debug.Log("Defeated enemy!");
         playerIndicator.SetActive(false);
+        mainCameraScript.resetRelPos();
         // TODO: UNLOCK MOVEMENT, DELETE ENEMY(??)
         player.GetComponent<PlayerManager>().resetLives();
         PlayerManager.pm.playState = PlayerState.playing;
@@ -184,6 +191,7 @@ public class CombatManager : MonoBehaviour
         Debug.Log("Lost to enemy :(");
         winNum = 0;
         loseNum = 0; 
+        mainCameraScript.resetRelPos();
         player.GetComponent<PlayerManager>().LoseLife(); // lose a life 
         PlayerManager.pm.playState = PlayerState.playing;
         player.GetComponent<PlayerController>().canPlay = true;
