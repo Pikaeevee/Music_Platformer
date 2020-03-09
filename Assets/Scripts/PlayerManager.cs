@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public enum PlayerState { playing, fighting }
@@ -14,6 +15,9 @@ public class PlayerManager : MonoBehaviour
     public int playerLives = 3; 
 
     public string[] noteKeys = {"i", "j", "k", "l"};
+
+    public Image playerHealth; 
+    public Sprite[] healthSprites;
 
     private void Awake()
     {
@@ -48,10 +52,16 @@ public class PlayerManager : MonoBehaviour
       return -1;
     }
 
+    public void resetLives() {
+      playerLives = 3;
+      playerHealth.sprite = healthSprites[playerLives];
+    }
+
     public void LoseLife()
     {
         Debug.Log("lost a life :c");
         playerLives--; 
+        playerHealth.sprite = healthSprites[playerLives];
         if (playerLives <= 0)
         {
             GameOver(); 

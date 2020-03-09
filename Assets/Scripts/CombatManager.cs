@@ -24,8 +24,8 @@ public class CombatManager : MonoBehaviour
     private int winNum = 0; // # of times won so far 
     private int loseNum = 0; // # of times lost so far 
 
-    public GameObject playerHealth;
     public GameObject alert;
+    public GameObject playerIndicator;
   
   // Start is called before the first frame update
   void Start()
@@ -34,17 +34,22 @@ public class CombatManager : MonoBehaviour
     player = GameObject.Find("Player");
   }
 
-    public void StartCombat()
-    {
-        generateEnemySequence();
-        playerHealth.SetActive(true);
-        alert.GetComponent<Animator>().ResetTrigger("EnemyEncounter");
-        alert.GetComponent<Animator>().SetTrigger("EnemyEncounter");
-        playerPhase = false;
-        player.GetComponent<PlayerController>().canPlay = false;
-        PlayerManager.pm.playState = PlayerState.fighting;
-        startEnemyPhase();
-    }
+  public void StartCombat()
+  {
+      generateEnemySequence();
+      alert.GetComponent<Animator>().ResetTrigger("EnemyEncounter");
+      alert.GetComponent<Animator>().SetTrigger("EnemyEncounter");
+      playerPhase = false;
+      player.GetComponent<PlayerController>().canPlay = false;
+      PlayerManager.pm.playState = PlayerState.fighting;
+      StartCoroutine(triggerPrebattleDialogue());   
+  }
+
+  IEnumerator triggerPrebattleDialogue() {
+    //TODO: do dialogue stuff here
+    yield return new WaitForSeconds(3.0f);
+    startEnemyPhase();
+  }
 
   void generateEnemySequence() {
     enemySequence = new int[numNotes];
@@ -73,6 +78,7 @@ public class CombatManager : MonoBehaviour
         PlayerLost();
         yield break; // stop coroutine 
     }
+    playerIndicator.SetActive(false);
     startEnemyPhase();
   }
 
@@ -92,7 +98,7 @@ public class CombatManager : MonoBehaviour
         PlayerWon();
         yield break; 
     }
-
+    playerIndicator.SetActive(false);
     generateEnemySequence();
     startEnemyPhase();
   }
@@ -101,6 +107,7 @@ public class CombatManager : MonoBehaviour
   void Update()
   {
     if(enemy.GetComponent<EnemyController>().donePlaying && !playerPhase) {
+      playerIndicator.SetActive(true);
       playerPhase = true;
       player.GetComponent<PlayerController>().canPlay = true;
       playerNotesPlayed = 0;
@@ -108,7 +115,7 @@ public class CombatManager : MonoBehaviour
     } else if(playerPhase) {
       int ind = PlayerManager.pm.getIndexOfKey();
       if(ind != -1) {
-        if(enemySequence[playerNotesPlayed] != 0) {
+        if(enemySequence[playerNotesPlayed] != ind) {
           StartCoroutine(playError());
         }
         playerNotesPlayed++;
@@ -147,8 +154,9 @@ public class CombatManager : MonoBehaviour
     void PlayerWon()
     {
         Debug.Log("Defeated enemy!");
-        playerHealth.SetActive(false);
+        playerIndicator.SetActive(false);
         // TODO: UNLOCK MOVEMENT, DELETE ENEMY(??)
+        player.GetComponent<PlayerManager>().resetLives();
         PlayerManager.pm.playState = PlayerState.playing;
         player.GetComponent<PlayerController>().canPlay = true;
         enemy.SetActive(false);
@@ -160,7 +168,6 @@ public class CombatManager : MonoBehaviour
         winNum = 0;
         loseNum = 0; 
         player.GetComponent<PlayerManager>().LoseLife(); // lose a life 
-        // TODO: UNLOCK MOVEMENT
         PlayerManager.pm.playState = PlayerState.playing;
         player.GetComponent<PlayerController>().canPlay = true;
     }
