@@ -19028,6 +19028,7 @@ GameObject:
   - component: {fileID: 4935134057563687399}
   - component: {fileID: 4935134057563687397}
   - component: {fileID: 4935134057563687398}
+  - component: {fileID: 8123574349536730219}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -19230,6 +19231,25 @@ MonoBehaviour:
   dialogueBox: {fileID: 5925785478497706410}
   combatManager: {fileID: 0}
   dialogueTime: 2
+--- !u!95 &8123574349536730219
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935134057563687393}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b420916f53f64576973edf017ba7438, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5925785478497706410
 GameObject:
   m_ObjectHideFlags: 0

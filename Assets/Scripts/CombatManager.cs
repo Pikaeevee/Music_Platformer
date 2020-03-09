@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement; 
+using TMPro;
 
 public class CombatManager : MonoBehaviour
 {
     private GameObject player;
     public GameObject enemy;
+    public GameObject roundNumber;
     public AudioClip errorSound;
     public AudioClip correctSound;
 
@@ -50,6 +51,8 @@ public class CombatManager : MonoBehaviour
     yield return new WaitForSeconds(1f);
     StartCoroutine(enemy.GetComponent<EnemyController>().ShowDialogue());
     yield return new WaitForSeconds(3.0f);
+    roundNumber.SetActive(true);
+    updateRoundNumber();
     startEnemyPhase();
   }
 
@@ -64,9 +67,13 @@ public class CombatManager : MonoBehaviour
     StartCoroutine(enemy.GetComponent<EnemyController>().PlayNotes(enemySequence));
   }
 
+  void updateRoundNumber() {
+    roundNumber.GetComponent<TMPro.TextMeshProUGUI>().text = "<mspace=0.3em>Round " + 
+      (winNum + 1) + "/" + winCondition + "</mspace>";     
+  }
+
   IEnumerator playError() {
     loseNum++; // increment # of fails for match 
-    
     playerPhase = false;
     yield return new WaitForSeconds(0.2f);
     player.GetComponent<PlayerController>().canPlay = false;
@@ -93,7 +100,6 @@ public class CombatManager : MonoBehaviour
     audioPlayer.clip = correctSound;
     audioPlayer.Play();
     yield return new WaitForSeconds(audioPlayer.clip.length);
-
     // check if player won, stop coroutine if so 
     if (winNum >= winCondition)
     {
@@ -101,6 +107,7 @@ public class CombatManager : MonoBehaviour
         yield break; 
     }
     playerIndicator.SetActive(false);
+    updateRoundNumber();
     generateEnemySequence();
     startEnemyPhase();
   }
@@ -153,6 +160,13 @@ public class CombatManager : MonoBehaviour
     }
   }
 
+  IEnumerator eliminateEnemy() {
+    enemy.GetComponent<Animator>().ResetTrigger("EnemyDied");
+    enemy.GetComponent<Animator>().SetTrigger("EnemyDied");
+    yield return new WaitForSeconds(0.2f);
+    enemy.SetActive(false);
+  }
+
     void PlayerWon()
     {
         Debug.Log("Defeated enemy!");
@@ -161,7 +175,8 @@ public class CombatManager : MonoBehaviour
         player.GetComponent<PlayerManager>().resetLives();
         PlayerManager.pm.playState = PlayerState.playing;
         player.GetComponent<PlayerController>().canPlay = true;
-        enemy.SetActive(false);
+        StartCoroutine(eliminateEnemy());
+        roundNumber.SetActive(false);
     }
 
     void PlayerLost()
@@ -172,5 +187,6 @@ public class CombatManager : MonoBehaviour
         player.GetComponent<PlayerManager>().LoseLife(); // lose a life 
         PlayerManager.pm.playState = PlayerState.playing;
         player.GetComponent<PlayerController>().canPlay = true;
+        roundNumber.SetActive(false);
     }
 }
