@@ -19,6 +19,12 @@ public class SheetMusicManager : MonoBehaviour
   private GameObject combatUI;
   private GameObject sheetMusicUI;
 
+  private AudioSource audioSource;
+  public AudioClip pullUpMusicSound;
+  public AudioClip changeMusicSound;
+  public AudioClip putAwayMusicSound;
+
+
   void Start()
   {
     canShowMusic = true;
@@ -29,6 +35,7 @@ public class SheetMusicManager : MonoBehaviour
     mToMusicText.SetActive(false);
     combatUI = GameObject.Find("Combat UI");
     sheetMusicUI = GameObject.Find("SheetMusicUI");
+    audioSource = this.GetComponent<AudioSource>();
   }
 
   public void setSheetMusicObtained(int i) {
@@ -47,6 +54,8 @@ public class SheetMusicManager : MonoBehaviour
       sheetMusicImage.GetComponent<Animator>().SetTrigger("FadeUp");
       sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", false);
       currentMusicIndex = i;
+      audioSource.clip = pullUpMusicSound;
+      audioSource.Play();
     }
   }
 
@@ -58,6 +67,8 @@ public class SheetMusicManager : MonoBehaviour
         sheetMusicImage.GetComponent<Animator>().ResetTrigger("NextMusic");
         sheetMusicImage.GetComponent<Animator>().SetTrigger("NextMusic");
         currentMusicIndex = newIndex;
+        audioSource.clip = changeMusicSound;
+        audioSource.Play();
         return;
       }
     }
@@ -71,6 +82,8 @@ public class SheetMusicManager : MonoBehaviour
         sheetMusicImage.GetComponent<Animator>().ResetTrigger("PrevMusic");
         sheetMusicImage.GetComponent<Animator>().SetTrigger("PrevMusic");
         currentMusicIndex = newIndex;
+        audioSource.clip = changeMusicSound;
+        audioSource.Play();
         return;
       }
     }
@@ -85,6 +98,8 @@ public class SheetMusicManager : MonoBehaviour
     mToMusicText.SetActive(true);
     sheetMusicImage.GetComponent<Animator>().ResetTrigger("FadeUp");
     sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", true);
+    audioSource.clip = putAwayMusicSound;
+    audioSource.Play();
   }
 
   void Update()
@@ -94,7 +109,7 @@ public class SheetMusicManager : MonoBehaviour
     } else {
       sheetMusicUI.SetActive(true);
     }
-    
+
     if(!showingMusic && canShowMusic && Input.GetKeyDown("m")) {
       Debug.Log("Showing Music");
       recallingMusic = true;
