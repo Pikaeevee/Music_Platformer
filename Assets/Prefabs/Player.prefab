@@ -19125,6 +19125,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e1ab0133eb7a346608f1c915c5ad1307, type: 3}
   - {fileID: 8300000, guid: c4b9e096e5eb445288a9d1ab41273ce3, type: 3}
   - {fileID: 8300000, guid: 9c07163bf8864495da95cbaa9101f174, type: 3}
+  buffSound: {fileID: 8300000, guid: bdd144f12337a419a8f0b8a967fa02a3, type: 3}
+  debuffSound: {fileID: 8300000, guid: b4be6129512a14a3f8771282d2c97361, type: 3}
   particleSystems:
   - {fileID: 4841152504607029563}
   - {fileID: 1978423368}
@@ -19312,6 +19314,12 @@ MonoBehaviour:
   - j
   - k
   - l
+  playerHealth: {fileID: 0}
+  healthSprites:
+  - {fileID: 21300000, guid: 409ffbb2141d14964b5730a76c1a8d5e, type: 3}
+  - {fileID: 21300000, guid: 364a9be24608341108c19a9c47e9b049, type: 3}
+  - {fileID: 21300000, guid: 17796b066c68a431cb9ab667f2c5590e, type: 3}
+  - {fileID: 21300000, guid: 7c0caaa9176914a70aa5a744401f44d7, type: 3}
 --- !u!1 &5402558189419069217
 GameObject:
   m_ObjectHideFlags: 0

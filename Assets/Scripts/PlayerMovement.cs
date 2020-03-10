@@ -107,24 +107,20 @@ public class PlayerMovement : MonoBehaviour
         isHighJumping = true; 
         jumpSpeed *= 1.5f;
         //rb.gravityScale *= 0.3f;
-        StartCoroutine(JumpBuffDuration());
-    }   
-
-    public void AnotherAbility()
-    {
-        Debug.Log("Some other ability was done");
     } 
 
-    private IEnumerator JumpBuffDuration()
-    {
-        yield return new WaitForSeconds(10.0f);
-
-        // reset jumpspeed of player 
+    public void DeactivateHighJump() {
+      // reset jumpspeed of player 
         jumpSpeed /= 1.5f;
         //rb.gravityScale /= 0.3f;
         isHighJumping = false; 
         Debug.Log("Deactivate High Jump");
     }
+
+    public void AnotherAbility()
+    {
+        Debug.Log("Some other ability was done");
+    } 
 
     private void OnCollisionEnter2D(Collision2D other) 
     {

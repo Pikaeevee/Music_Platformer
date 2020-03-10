@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
   public AudioClip[] sounds;
+  public AudioClip buffSound;
+  public AudioClip debuffSound;
   public ParticleSystem[] particleSystems;
   // public ParticleSystem notesParticles;
   public bool canPlay = false;
@@ -16,12 +18,13 @@ public class PlayerController : MonoBehaviour
   // private string[] allSequences = {"jkl;", "jjl;", "k;l"};
   // private string[] playerSequences = {"jkl;"}; // Will empty for game start and fill as music is found
   private Dictionary<string, string> allSequences = new Dictionary<string, string>();
+  private Dictionary<string, bool> sequenceActivated = new Dictionary<string, bool>();
   private Dictionary<string, string> playerSequences = new Dictionary<string, string>();
   private float timeoutDuration = 1.0f;
   private float timeoutTime = 0.0f;
   private string userSequence = "";
   private PlayerMovement movementScript;
-
+  private BuffIconManager buffIconManager;
   private int playedNotes = 0;
 
   // Start is called before the first frame update
@@ -29,9 +32,14 @@ public class PlayerController : MonoBehaviour
   {
     player = GetComponent<AudioSource>();
     movementScript = GetComponent<PlayerMovement>();
+    buffIconManager = GameObject.Find("BuffIconManager").GetComponent<BuffIconManager>();
+
     allSequences.Add("ijkl", "HighJump");
+    sequenceActivated.Add("HighJump", false);
     allSequences.Add("iikl", "AnotherAbility");
+    sequenceActivated.Add("AnotherAbility", false);
     allSequences.Add("jlk", "AnotherAbility");
+    // sequenceActivated.Add("AnotherAbility", false);
     // playerSequences.Add("jkl;", "HighJump");
   }
 
@@ -46,6 +54,22 @@ public class PlayerController : MonoBehaviour
     playedNotes++;
     player.clip = sounds[i];
     player.Play();
+  }
+
+  IEnumerator startHighJumpTimer() {
+    player.clip = buffSound;
+    player.Play();
+    buffIconManager.showIcon(0, 10.0f);
+    yield return new WaitForSeconds(10.0f);
+    movementScript.Invoke("DeactivateHighJump", 0.0f);
+    sequenceActivated["HighJump"] = false;
+    player.clip = debuffSound;
+    player.Play();
+  }
+
+  void HighJump() {
+    movementScript.Invoke("HighJump", 0.0f);
+    StartCoroutine(startHighJumpTimer());
   }
 
   // Update is called once per frame
@@ -73,7 +97,10 @@ public class PlayerController : MonoBehaviour
           }
           foreach(string s in playerSequences.Keys) {
             if(userSequence == s) {
-              movementScript.Invoke(playerSequences[s], 0.0f);
+              if(!sequenceActivated[playerSequences[s]]) {
+                this.Invoke(playerSequences[s], 0.0f);
+                sequenceActivated[playerSequences[s]] = true;
+              }
             }
           }
         }

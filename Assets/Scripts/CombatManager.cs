@@ -50,14 +50,13 @@ public class CombatManager : MonoBehaviour
       playerPhase = false;
       player.GetComponent<PlayerController>().canPlay = false;
       PlayerManager.pm.playState = PlayerState.fighting;
-      StartCoroutine(triggerPrebattleDialogue());   
+      StartCoroutine(triggerPrebattle());   
   }
 
-  IEnumerator triggerPrebattleDialogue() {
-    //TODO: do dialogue stuff here
+  IEnumerator triggerPrebattle() {
     yield return new WaitForSeconds(1f);
-    StartCoroutine(enemy.GetComponent<EnemyController>().ShowDialogue());
-    yield return new WaitForSeconds(3.0f);
+    // StartCoroutine(enemy.GetComponent<EnemyController>().ShowDialogue());
+    // yield return new WaitForSeconds(3.0f);
     roundNumber.SetActive(true);
     updateRoundNumber();
     startEnemyPhase();
