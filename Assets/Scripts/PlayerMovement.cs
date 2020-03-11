@@ -106,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("jumping");
             isJumping = true;
+            playerAnimator.SetTrigger("startJump");
+            playerAnimator.ResetTrigger("doneJump");
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         }
     }
@@ -140,7 +142,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Platform") 
         {
-            isJumping = false;
+            if(isJumping) {
+              playerAnimator.SetTrigger("doneJump");
+              playerAnimator.ResetTrigger("startJump");
+              isJumping = false;
+            }
         }    
     }
 }
