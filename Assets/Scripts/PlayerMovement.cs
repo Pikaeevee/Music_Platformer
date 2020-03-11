@@ -25,10 +25,13 @@ public class PlayerMovement : MonoBehaviour
 
     private float velocity; 
 
+    private Animator playerAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
         groundLayer = LayerMask.GetMask("Ground"); 
     }
 
@@ -43,6 +46,17 @@ public class PlayerMovement : MonoBehaviour
         if (PlayerManager.pm.playState == PlayerState.playing)
         {
             velocity = Input.GetAxis("Horizontal") * speed;
+            if(Input.GetAxis("Horizontal") < 0) {
+              transform.localRotation = Quaternion.Euler(0, 180, 0);
+              playerAnimator.SetBool("isWalking", true);
+            }
+            else if(Input.GetAxis("Horizontal") > 0) {
+              transform.localRotation = Quaternion.Euler(0, 0, 0);
+              playerAnimator.SetBool("isWalking", true);
+            } else {
+              playerAnimator.SetBool("isWalking", false);
+            }
+            
             // decrease how much player can move in the air 
             if (isJumping)
             {
@@ -75,10 +89,10 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded()
     {
         // Debug.Log("checking if is grounded");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.0f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, groundLayer);
         if (hit.collider != null)
         {
-            // Debug.Log("player is grounded");
+            Debug.Log("player is grounded");
             return true; 
         }
 
