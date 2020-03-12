@@ -26,10 +26,12 @@ public class PlayerController : MonoBehaviour
   private PlayerMovement movementScript;
   private BuffIconManager buffIconManager;
   private int playedNotes = 0;
+  private Animator playerAnimator;
 
   // Start is called before the first frame update
   void Start()
   {
+    playerAnimator = GetComponent<Animator>();
     player = GetComponent<AudioSource>();
     movementScript = GetComponent<PlayerMovement>();
     buffIconManager = GameObject.Find("BuffIconManager").GetComponent<BuffIconManager>();
@@ -44,9 +46,11 @@ public class PlayerController : MonoBehaviour
   }
 
   IEnumerator PlayParticleEffect(int i) {
+    playerAnimator.SetBool("isPlaying", true);
     particleSystems[i].Play();
     yield return new WaitForSeconds(0.5f);
     particleSystems[i].Stop();
+    playerAnimator.SetBool("isPlaying", false);
   }
 
   void PlaySound(int i) {
