@@ -93,6 +93,9 @@ public class PlayerMovement : MonoBehaviour
         if (hit.collider != null)
         {
             Debug.Log("player is grounded");
+            playerAnimator.SetTrigger("doneJump");
+            playerAnimator.ResetTrigger("startJump");
+            isJumping = false;
             return true; 
         }
 
@@ -148,5 +151,21 @@ public class PlayerMovement : MonoBehaviour
               isJumping = false;
             }
         }    
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            transform.parent = other.gameObject.transform;
+        }    
+    }
+
+    private void OnTriggerExit2D(Collider2D other) 
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            transform.parent = null;
+        }
     }
 }
