@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveRight: 1
   leftBound: 85
-  rightBound: 108
+  rightBound: 107.5
   smoothTime: 3
 --- !u!61 &1558660937
 BoxCollider2D:
