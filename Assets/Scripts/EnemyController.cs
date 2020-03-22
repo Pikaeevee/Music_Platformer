@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
     {
@@ -10,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public bool donePlaying;
     public GameObject indicator;
     public GameObject dialogueBox;
+    public Text dialogueText;
     public CombatManager combatManager;
     public float dialogueTime = 2.0f;
 
@@ -36,7 +38,8 @@ public class EnemyController : MonoBehaviour
     }
 
     //TODO: edit this function for better dialogue support
-    public IEnumerator ShowDialogue() {
+    public IEnumerator ShowPrebattleDialogue() {
+        dialogueText.text = enemyVars.getPrebattleDialogue();
         dialogueBox.SetActive(true);
         yield return new WaitForSeconds(dialogueTime);
         dialogueBox.SetActive(false);

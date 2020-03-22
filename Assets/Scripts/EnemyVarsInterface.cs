@@ -11,4 +11,5 @@ public interface EnemyVarsInterface
     int[][] getMusicNotes();
 
     //TODO: dialogue handling probably done here 
+    string getPrebattleDialogue();
 }

@@ -55,8 +55,8 @@ public class CombatManager : MonoBehaviour
 
     IEnumerator triggerPrebattle() {
         yield return new WaitForSeconds(1f);
-        // StartCoroutine(enemy.GetComponent<EnemyController>().ShowDialogue());
-        // yield return new WaitForSeconds(3.0f);
+        StartCoroutine(enemy.GetComponent<EnemyController>().ShowPrebattleDialogue());
+        yield return new WaitForSeconds(3.0f);
         roundNumber.SetActive(true);
         firstEnemyPhase();
     }

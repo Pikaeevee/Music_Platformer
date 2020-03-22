@@ -15,4 +15,8 @@ public class FrenchieVars : MonoBehaviour, EnemyVarsInterface
         musicNotes[0] = new int[]{0, 1, 0, 3};
         return musicNotes;
     }
+
+    public string getPrebattleDialogue() {
+        return "Ew a Melodica?! Let me show you what real music sounds like!";
+    }
 }
