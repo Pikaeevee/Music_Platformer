@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, groundLayer);
         if (hit.collider != null)
         {
-            Debug.Log("player is grounded");
+            //Debug.Log("player is grounded");
             playerAnimator.SetTrigger("doneJump");
             playerAnimator.ResetTrigger("startJump");
             isJumping = false;
@@ -150,7 +150,17 @@ public class PlayerMovement : MonoBehaviour
               playerAnimator.ResetTrigger("startJump");
               isJumping = false;
             }
-        }    
+        }
+
+        if(other.gameObject.tag == "Hazard")
+        {
+            if(isJumping) {
+              playerAnimator.SetTrigger("doneJump");
+              playerAnimator.ResetTrigger("startJump");
+              isJumping = false;
+            }
+            PlayerManager.pm.LoseLife();
+        } 
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
@@ -158,6 +168,12 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "Platform")
         {
             transform.parent = other.gameObject.transform;
+        }
+
+        if (other.gameObject.tag == "Checkpoint")
+        {
+            PlayerManager.pm.AddCheckpoint(other.gameObject);
+            other.enabled = false;
         }    
     }
 

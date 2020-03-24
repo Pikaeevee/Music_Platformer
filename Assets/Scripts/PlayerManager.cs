@@ -19,6 +19,8 @@ public class PlayerManager : MonoBehaviour
     public Image playerHealth; 
     public Sprite[] healthSprites;
 
+    public Vector2 lastCheckpoint;
+
     private void Awake()
     {
         // Singleton behavior 
@@ -44,6 +46,11 @@ public class PlayerManager : MonoBehaviour
         
     }
 
+    public void AddCheckpoint(GameObject checkpoint) 
+    {
+        lastCheckpoint = checkpoint.transform.position;
+    }
+
     //Returns index of the key pressed; if key not in array, return -1
     public int getIndexOfKey() {
       for(int i = 0; i < noteKeys.Length; i++) {
@@ -65,6 +72,12 @@ public class PlayerManager : MonoBehaviour
         if (playerLives <= 0)
         {
             GameOver(); 
+        }
+        else 
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            transform.position = lastCheckpoint;
+            //Debug.Log(playerLives);
         }
     }
 
