@@ -9,10 +9,10 @@ public class CameraScript : MonoBehaviour
     private float xVelocity = 0.0f;
     private float yVelocity = 0.0f;
 
-    public float smoothTime = 0.3f;
+    public float smoothTime = 0.5f;
 
     private float shake = 0.0f;
-    private float offset = 0.0f;
+    private float offset = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 playerposition = player.transform.position;
         Vector3 cameraposition = transform.position;
