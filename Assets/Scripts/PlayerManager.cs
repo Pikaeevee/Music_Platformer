@@ -75,8 +75,7 @@ public class PlayerManager : MonoBehaviour
         }
         else 
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            transform.position = lastCheckpoint;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             //Debug.Log(playerLives);
         }
     }

@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = PlayerManager.pm.lastCheckpoint;
         rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         groundLayer = LayerMask.GetMask("Ground"); 
@@ -160,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
               isJumping = false;
             }
             PlayerManager.pm.LoseLife();
+            transform.position = PlayerManager.pm.lastCheckpoint;
         } 
     }
 
