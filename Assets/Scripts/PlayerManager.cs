@@ -85,5 +85,13 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("You died :(");
         // TODO: CREATE GAME OVER SCREEN  
         //SceneManager.LoadScene("Game Over"); 
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void NextLevel()
+    {
+        Debug.Log("Next Level!");
+        Application.Quit();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
