@@ -7,13 +7,15 @@ public class PlayerMovement : MonoBehaviour
 	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
     public float speed = 10.0f; 
     public float jumpSpeed = 8.0f;
-    private float dashForce = 200.0f; 
+    private float dashForce = 500.0f; 
     public LayerMask groundLayer; 
 
 
     private bool isJumping = false;
 
-    private bool isFalling = false; 
+    private bool isFalling = false;
+
+    private bool isDashing = false; 
 
 
     private bool isHighJumping = false;
@@ -143,11 +145,21 @@ public class PlayerMovement : MonoBehaviour
     public void Dash()
     {
         // only dash in air 
-        if (!isGrounded())
+        if (!isGrounded() && !isDashing)
         {
             Debug.Log("Dashing");
+            isDashing = true;
+            rb.velocity = new Vector2(0, 0);
             rb.AddForce(transform.right * dashForce, ForceMode2D.Impulse);
+            StartCoroutine(DashCooldown());
         }
+    }
+
+    IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(0.8f);
+        isDashing = false; 
+
     }
 
     public void AnotherAbility()
