@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     allSequences.Add("ijkl", "HighJump");
     sequenceActivated.Add("HighJump", false);
-    allSequences.Add("jj", "Dash");
+    allSequences.Add("jkjk", "Dash");
     sequenceActivated.Add("Dash", false);
     allSequences.Add("jlk", "AnotherAbility");
     // sequenceActivated.Add("AnotherAbility", false);
@@ -118,9 +118,14 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        movementScript.Invoke("Dash", 0.0f);
+        movementScript.canDash = true;
         sequenceActivated["Dash"] = false;
-        Debug.Log(sequenceActivated["Dash"]);
+    }
+
+    IEnumerator DashDuration()
+    {
+        yield return new WaitForSeconds(10.0f);
+        movementScript.canDash = false; 
     }
 
   public void AddAbility(string ability)

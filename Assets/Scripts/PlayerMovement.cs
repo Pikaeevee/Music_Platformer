@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
     public float speed = 10.0f; 
     public float jumpSpeed = 8.0f;
-    private float dashForce = 500.0f; 
+    private float dashForce = 100.0f; 
     public LayerMask groundLayer; 
 
 
@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isFalling = false;
 
+    public bool canDash = false; 
     private bool isDashing = false; 
 
 
@@ -145,19 +146,31 @@ public class PlayerMovement : MonoBehaviour
     public void Dash()
     {
         // only dash in air 
-        if (!isGrounded() && !isDashing)
+        if (!isGrounded() && !isDashing && canDash)
         {
             Debug.Log("Dashing");
             isDashing = true;
-            rb.velocity = new Vector2(0, 0);
-            rb.AddForce(transform.right * dashForce, ForceMode2D.Impulse);
+            float currg = rb.gravityScale; 
+            rb.gravityScale = 0;  
+            //rb.velocity = new Vector2(, 0);
+            if (isFalling)
+            {
+                rb.AddRelativeForce(transform.right * dashForce * 5, ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddRelativeForce(transform.right * dashForce, ForceMode2D.Impulse);
+            }
+            rb.gravityScale = currg;
+            //rb.velocity = new Vector2(rb.velocity.x * dashForce, rb.velocity.y);
             StartCoroutine(DashCooldown());
         }
     }
 
     IEnumerator DashCooldown()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("Dash off cooldown");
         isDashing = false; 
 
     }
