@@ -38,11 +38,12 @@ public class PlayerController : MonoBehaviour
 
     allSequences.Add("ijkl", "HighJump");
     sequenceActivated.Add("HighJump", false);
-    allSequences.Add("iikl", "AnotherAbility");
-    sequenceActivated.Add("AnotherAbility", false);
+    allSequences.Add("jj", "Dash");
+    sequenceActivated.Add("Dash", false);
     allSequences.Add("jlk", "AnotherAbility");
     // sequenceActivated.Add("AnotherAbility", false);
-    // playerSequences.Add("jkl;", "HighJump");
+     // playerSequences.Add("jkl;", "HighJump");
+     AddAbility("Dash");
   }
 
   IEnumerator PlayParticleEffect(int i) {
@@ -114,6 +115,13 @@ public class PlayerController : MonoBehaviour
       }
     }
   }
+
+    void Dash()
+    {
+        movementScript.Invoke("Dash", 0.0f);
+        sequenceActivated["Dash"] = false;
+        Debug.Log(sequenceActivated["Dash"]);
+    }
 
   public void AddAbility(string ability)
   {
