@@ -9,6 +9,7 @@ TagManager:
   - Hazard
   - Death
   - Checkpoint
+  - Puzzle
   layers:
   - Default
   - TransparentFX

@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = PlayerManager.pm.lastCheckpoint;
+        //transform.position = PlayerManager.pm.lastCheckpoint;
         rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         groundLayer = LayerMask.GetMask("Ground"); 
@@ -219,6 +219,11 @@ public class PlayerMovement : MonoBehaviour
             PlayerManager.pm.AddCheckpoint(other.gameObject);
             other.enabled = false;
         }    
+
+        if (other.gameObject.tag == "Puzzle")
+        {
+            other.gameObject.GetComponent<PuzzleManager>().SetIsSolving(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) 
@@ -226,6 +231,11 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "Platform")
         {
             transform.parent = null;
+        }
+
+        if (other.gameObject.tag == "Puzzle")
+        {
+            other.gameObject.GetComponent<PuzzleManager>().SetIsSolving(false);
         }
     }
 }
