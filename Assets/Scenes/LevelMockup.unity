@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 127330197}
   - component: {fileID: 127330199}
   m_Layer: 5
-  m_Name: BuffIcon1
+  m_Name: HighJumpIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 507535928}
   - component: {fileID: 507535930}
   m_Layer: 5
-  m_Name: BuffIcon2
+  m_Name: SpikeManipIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 045df3e119b154b569e366b050f6e5b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1363,7 +1363,7 @@ GameObject:
   - component: {fileID: 668191376}
   - component: {fileID: 668191378}
   m_Layer: 5
-  m_Name: BuffIcon3
+  m_Name: DashIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7caeed9c45b7e44a480b13919bc26316, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1992,6 +1992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 3673638812309772678}
   roundNumber: {fileID: 1665966562}
+  alertSound: {fileID: 8300000, guid: 8b69d545ffa6c449781daefa5eb233bb, type: 3}
   errorSound: {fileID: 8300000, guid: 6c40518a91318466f8eab2f67fc92a60, type: 3}
   correctSound: {fileID: 8300000, guid: 00e9654ac600b4572be6e95b9d7e7653, type: 3}
   loseCondition: 3

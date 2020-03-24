@@ -9,6 +9,7 @@ public class CombatManager : MonoBehaviour
     private GameObject player;
     public GameObject enemy;
     public GameObject roundNumber;
+    public AudioClip alertSound;
     public AudioClip errorSound;
     public AudioClip correctSound;
 
@@ -54,6 +55,8 @@ public class CombatManager : MonoBehaviour
     }
 
     IEnumerator triggerPrebattle() {
+        audioPlayer.clip = alertSound;
+        audioPlayer.Play();
         yield return new WaitForSeconds(1f);
         StartCoroutine(enemy.GetComponent<EnemyController>().ShowPrebattleDialogue());
         yield return new WaitForSeconds(3.0f);
