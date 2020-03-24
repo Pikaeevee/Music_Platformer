@@ -7,15 +7,19 @@ public class PlayerMovement : MonoBehaviour
 	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
     public float speed = 10.0f; 
     public float jumpSpeed = 8.0f;
+    private float dashForce = 500.0f; 
     public LayerMask groundLayer; 
 
 
     private bool isJumping = false;
 
-    private bool isFalling = false; 
+    private bool isFalling = false;
+
+    private bool isDashing = false; 
 
 
     private bool isHighJumping = false;
+
 
     // vars related to jumping 
     [SerializeField] private Vector2 howCloseToJump;
@@ -70,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
                 //rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
                 // rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            }
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                Dash();
             }
         }
         // check for falling, multiply gravity 
@@ -135,6 +144,26 @@ public class PlayerMovement : MonoBehaviour
         //rb.gravityScale /= 0.3f;
         isHighJumping = false; 
         Debug.Log("Deactivate High Jump");
+    }
+
+    public void Dash()
+    {
+        // only dash in air 
+        if (!isGrounded() && !isDashing)
+        {
+            Debug.Log("Dashing");
+            isDashing = true;
+            rb.velocity = new Vector2(0, 0);
+            rb.AddForce(transform.right * dashForce, ForceMode2D.Impulse);
+            StartCoroutine(DashCooldown());
+        }
+    }
+
+    IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(0.8f);
+        isDashing = false; 
+
     }
 
     public void AnotherAbility()
