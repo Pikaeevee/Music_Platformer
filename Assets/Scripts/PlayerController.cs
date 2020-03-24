@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
   public ParticleSystem[] particleSystems;
   // public ParticleSystem notesParticles;
   public bool canPlay = false;
-  // public float delayTime;
+    // public float delayTime;
+
+    public bool canControlSpikes = false; 
 
   private AudioSource player;
 
@@ -38,12 +40,13 @@ public class PlayerController : MonoBehaviour
 
     allSequences.Add("ijkl", "HighJump");
     sequenceActivated.Add("HighJump", false);
-    allSequences.Add("jj", "Dash");
+    allSequences.Add("jkjk", "Dash");
     sequenceActivated.Add("Dash", false);
-    allSequences.Add("jlk", "AnotherAbility");
-    // sequenceActivated.Add("AnotherAbility", false);
+    allSequences.Add("jkli", "SpikesControl");
+    sequenceActivated.Add("SpikesControl", false);
      // playerSequences.Add("jkl;", "HighJump");
-     AddAbility("Dash");
+        AddAbility("Dash");
+        AddAbility("SpikesControl");
   }
 
   IEnumerator PlayParticleEffect(int i) {
@@ -118,9 +121,25 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        movementScript.Invoke("Dash", 0.0f);
+        movementScript.canDash = true;
         sequenceActivated["Dash"] = false;
-        Debug.Log(sequenceActivated["Dash"]);
+    }
+
+    IEnumerator DashDuration()
+    {
+        yield return new WaitForSeconds(10.0f);
+        movementScript.canDash = false; 
+    }
+
+    void SpikesControl()
+    {
+        canControlSpikes = true; 
+    }
+
+    IEnumerator SpikesControlDuration()
+    {
+        yield return new WaitForSeconds(5.0f);
+        canControlSpikes = false; 
     }
 
   public void AddAbility(string ability)
