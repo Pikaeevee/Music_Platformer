@@ -19133,6 +19133,7 @@ MonoBehaviour:
   - {fileID: 1159148960}
   - {fileID: 1932159268}
   canPlay: 1
+  canControlSpikes: 0
 --- !u!82 &4841152505901316621
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19246,6 +19247,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  canDash: 0
   howCloseToJump: {x: 0, y: -0.75}
   bounceReturn: 0
 --- !u!50 &-4645369092987447060

@@ -38,6 +38,15 @@ public class SpikeController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            player.GetComponent<PlayerManager>().LoseLife(); 
+        }
+    }
+
+    // player enters radius around spikes 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
