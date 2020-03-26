@@ -43,6 +43,6 @@ public class MovingPlatformScript : MonoBehaviour
 
     bool ReachedPosition(Vector3 position)
     {
-        return (Mathf.Abs(transform.position.x - position.x) < 0.3f && Mathf.Abs(transform.position.y - position.y) < 0.3f);
+        return (Mathf.Abs(transform.position.x - position.x) < 1.0f && Mathf.Abs(transform.position.y - position.y) < 1.0f);
     }
 }
