@@ -19049,7 +19049,7 @@ Transform:
   m_GameObject: {fileID: 4841152505901316617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.57, y: -2.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.375, y: 0.375, z: 0.375}
   m_Children:
   - {fileID: 4841152504607029560}
   - {fileID: 1978423370}
@@ -19133,7 +19133,7 @@ MonoBehaviour:
   - {fileID: 1978423368}
   - {fileID: 1159148960}
   - {fileID: 1932159268}
-  canPlay: 1
+  canPlay: 0
   canControlSpikes: 0
 --- !u!82 &4841152505901316621
 AudioSource:
@@ -19318,11 +19318,13 @@ MonoBehaviour:
   - k
   - l
   playerHealth: {fileID: 0}
+  noteKeysUI: {fileID: 0}
   healthSprites:
   - {fileID: 21300000, guid: 409ffbb2141d14964b5730a76c1a8d5e, type: 3}
   - {fileID: 21300000, guid: 364a9be24608341108c19a9c47e9b049, type: 3}
   - {fileID: 21300000, guid: 17796b066c68a431cb9ab667f2c5590e, type: 3}
   - {fileID: 21300000, guid: 7c0caaa9176914a70aa5a744401f44d7, type: 3}
+  lastCheckpoint: {x: -7.076, y: -1.946}
 --- !u!95 &4841152505699749831
 Animator:
   serializedVersion: 3

@@ -133,13 +133,15 @@ public class PlayerController : MonoBehaviour
 
     void SpikesControl()
     {
-        canControlSpikes = true; 
+        canControlSpikes = true;
+        StartCoroutine(SpikesControlDuration());
     }
 
     IEnumerator SpikesControlDuration()
     {
         yield return new WaitForSeconds(5.0f);
         canControlSpikes = false; 
+        sequenceActivated["SpikesControl"] = false;
     }
 
   public void AddAbility(string ability)

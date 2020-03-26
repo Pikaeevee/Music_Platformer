@@ -27,7 +27,7 @@ public class PuzzleManager : MonoBehaviour
     {
         if (isSolving && !Solved())
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 purpleRing.transform.Rotate(0.0f, 0.0f, -45.0f, Space.Self);
             }
@@ -37,7 +37,7 @@ public class PuzzleManager : MonoBehaviour
                 pinkRing.transform.Rotate(0.0f, 0.0f, -45.0f, Space.Self);
             }
 
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.K))
             {
                 blueRing.transform.Rotate(0.0f, 0.0f, -45.0f, Space.Self);
             }
@@ -45,6 +45,11 @@ public class PuzzleManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.L))
             {
                 orangeRing.transform.Rotate(0.0f, 0.0f, -45.0f, Space.Self);
+            }
+
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                PlayerManager.pm.NextLevel();
             }
         }
         else if (Solved())

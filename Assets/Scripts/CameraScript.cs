@@ -25,7 +25,7 @@ public class CameraScript : MonoBehaviour
     {
         Vector3 playerposition = player.transform.position;
         Vector3 cameraposition = transform.position;
-        cameraposition.x = Mathf.Clamp(Mathf.SmoothDamp(cameraposition.x, playerposition.x + offset, ref xVelocity, smoothTime) + shake, 0, 256);
+        cameraposition.x = Mathf.SmoothDamp(cameraposition.x, playerposition.x + offset, ref xVelocity, smoothTime) + shake;
         if(Mathf.Abs(playerposition.y - cameraposition.y) > 2.5f)
         {
             cameraposition.y = Mathf.SmoothDamp(cameraposition.y, playerposition.y, ref yVelocity, smoothTime);
