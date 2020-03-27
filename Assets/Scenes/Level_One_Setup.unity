@@ -317,7 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1558660940, guid: 78dd9c662d49b48deb92661d4b4e9b12, type: 3}
       propertyPath: smoothTime
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1632257395654049220, guid: 78dd9c662d49b48deb92661d4b4e9b12,
         type: 3}
@@ -31829,7 +31829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1558660940, guid: 78dd9c662d49b48deb92661d4b4e9b12, type: 3}
       propertyPath: smoothTime
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1632257395654049220, guid: 78dd9c662d49b48deb92661d4b4e9b12,
         type: 3}
