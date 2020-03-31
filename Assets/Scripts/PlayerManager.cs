@@ -8,7 +8,7 @@ public enum PlayerState { playing, fighting, menuing }
 
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager pm; 
+    public static PlayerManager pm;
 
     private PlayerState playState = PlayerState.playing;
 
@@ -100,6 +100,8 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("You died :(");
         // TODO: CREATE GAME OVER SCREEN  
         //SceneManager.LoadScene("Game Over"); 
+
+        Destroy(this.gameObject, 0.5f);
         SceneManager.LoadScene("MainMenu");
     }
 
