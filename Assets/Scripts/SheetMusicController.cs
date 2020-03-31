@@ -42,6 +42,7 @@ public class SheetMusicController : MonoBehaviour
         PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("HighJump");
         break;
       case 3:
+      //Spike manip ability
         PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("SpikeControl");
         break;
       default:

@@ -33,7 +33,7 @@ public class SheetMusicManager : MonoBehaviour
     showingMusic = false;
     escapeToCloseText.SetActive(false);
     mToMusicText.SetActive(false);
-    combatUI = GameObject.Find("Combat UI");
+    combatUI = GameObject.Find("CombatUI");
     sheetMusicUI = GameObject.Find("SheetMusicUI");
     audioSource = this.GetComponent<AudioSource>();
   }
@@ -44,7 +44,7 @@ public class SheetMusicManager : MonoBehaviour
 
   public void displayMusic(int i) {
     if(obtainedMusic[i]) {
-      Time.timeScale = 0;
+      PlayerManager.pm.playState = PlayerState.menuing;
       combatUI.SetActive(false);
       showingMusic = true;
       sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
@@ -90,7 +90,7 @@ public class SheetMusicManager : MonoBehaviour
   }
 
   public void hideMusic() {
-    Time.timeScale = 1;
+    PlayerManager.pm.playState = PlayerState.playing;
     combatUI.SetActive(true);
     showingMusic = false;
     recallingMusic = false;
@@ -115,7 +115,7 @@ public class SheetMusicManager : MonoBehaviour
       recallingMusic = true;
       displayMusic(0);
     }
-    if(showingMusic && Input.GetKeyDown(KeyCode.Escape)) {
+    if(showingMusic && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))) {
       Debug.Log("Hiding Music");
       hideMusic();
     }

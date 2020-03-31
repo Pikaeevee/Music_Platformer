@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum PlayerState { playing, fighting }
+public enum PlayerState { playing, fighting, menuing }
 
 public class PlayerManager : MonoBehaviour
 {
