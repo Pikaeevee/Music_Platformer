@@ -4,37 +4,69 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public GameObject player;
-    private Vector3 viewGoal;
-    private float xVelocity = 0.0f;
-    private float yVelocity = 0.0f;
+    /***
+     * smooth follow 2d camera script from 
+     * https://gist.github.com/GuilleUCM/0627c64630b745f70bd2
+     * 
+     */
 
-    public float smoothTime = 0.5f;
+    //offset from the viewport center to fix damping
+    public float m_DampTime = 10f;
+    public Transform m_Target;
+    public float m_XOffset = 0;
+    public float m_YOffset = 0;
+
+    private float margin = 0.3f;
+
+    private float resetMargin = 1.0f; 
 
     private float shake = 0.0f;
-    private float offset = 0.3f;
+
+    private float offset = 0.3f; 
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        if (m_Target == null)
+        {
+            m_Target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        Vector3 playerposition = player.transform.position;
-        Vector3 cameraposition = transform.position;
-        cameraposition.x = Mathf.SmoothDamp(cameraposition.x, playerposition.x + offset, ref xVelocity, smoothTime) + shake;
-        if(Mathf.Abs(playerposition.y - cameraposition.y) > 2.5f)
+        if (m_Target)
         {
-            cameraposition.y = Mathf.SmoothDamp(cameraposition.y, playerposition.y, ref yVelocity, smoothTime);
+            float targetX = m_Target.position.x + m_XOffset;
+            float targetY = m_Target.position.y + m_YOffset;
+
+            // check if player has teleported too far 
+            if (Mathf.Abs(transform.position.x - targetX) > resetMargin)
+            {
+                targetX = m_Target.position.x; 
+            }
+            if (Mathf.Abs(transform.position.y - targetY) > resetMargin)
+            {
+                targetY = m_Target.position.y;
+            }
+            transform.position = new Vector3(targetX, targetY, transform.position.z);
+
+            if (Mathf.Abs(transform.position.x - targetX) > margin)
+            {
+                targetX = Mathf.Lerp(transform.position.x, targetX, 1 / m_DampTime * Time.deltaTime) + shake;
+            }
+            if (Mathf.Abs(transform.position.y - targetY) > margin)
+            {
+                targetY = Mathf.Lerp(transform.position.y, targetY, m_DampTime * Time.deltaTime);
+            }
+
+            transform.position = new Vector3(targetX, targetY, transform.position.z);
         }
-        transform.position = cameraposition;
     }
 
     public void setRelPos(float enemyXPos) {
-      offset = (enemyXPos - player.transform.position.x) / 2;
+      offset = (enemyXPos - m_Target.position.x) / 2;
     }
 
     public void resetRelPos() {
