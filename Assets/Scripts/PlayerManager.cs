@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager pm; 
 
-    public PlayerState playState = PlayerState.playing;
+    private PlayerState playState = PlayerState.playing;
 
     public int playerLives = 3; 
 
@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -50,6 +50,15 @@ public class PlayerManager : MonoBehaviour
             noteKeysUI.enabled = true;
             noNotesUI = false;
         }
+    }
+
+    public void SetPlayerState(PlayerState state) {
+        pm.playState = state;
+        UIManager.updateUI(state);
+    }
+
+    public PlayerState GetPlayerState() {
+        return pm.playState;
     }
 
     public void AddCheckpoint(GameObject checkpoint) 

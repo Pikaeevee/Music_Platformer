@@ -50,7 +50,7 @@ public class CombatManager : MonoBehaviour
         alert.GetComponent<Animator>().SetTrigger("EnemyEncounter");
         playerPhase = false;
         player.GetComponent<PlayerController>().canPlay = false;
-        PlayerManager.pm.playState = PlayerState.fighting;
+        PlayerManager.pm.SetPlayerState(PlayerState.fighting);
         StartCoroutine(triggerPrebattle());   
     }
 
@@ -174,7 +174,7 @@ public class CombatManager : MonoBehaviour
         mainCameraScript.resetRelPos();
         sheetMusicManager.canShowMusic = true;
         player.GetComponent<PlayerManager>().resetLives();
-        PlayerManager.pm.playState = PlayerState.playing;
+        PlayerManager.pm.SetPlayerState(PlayerState.playing);
         player.GetComponent<PlayerController>().canPlay = true;
         StartCoroutine(eliminateEnemy());
         roundNumber.SetActive(false);
@@ -188,7 +188,7 @@ public class CombatManager : MonoBehaviour
         mainCameraScript.resetRelPos();
         sheetMusicManager.canShowMusic = true;
         player.GetComponent<PlayerManager>().LoseLife(); // lose a life 
-        PlayerManager.pm.playState = PlayerState.playing;
+        PlayerManager.pm.SetPlayerState(PlayerState.playing);
         player.GetComponent<PlayerController>().canPlay = true;
         roundNumber.SetActive(false);
     }

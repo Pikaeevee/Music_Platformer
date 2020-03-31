@@ -82,11 +82,10 @@ public class PlayerController : MonoBehaviour
         if(ind != -1) {
             PlaySound(ind);
         }
-
         
         // Sequence Handling
         // Player has about a second to enter next key/note in sequence
-        if(PlayerManager.pm.playState == PlayerState.playing)
+        if(PlayerManager.pm.GetPlayerState() == PlayerState.playing)
         {
             if(Input.inputString.Length > 0) {
             timeoutTime = Time.time + timeoutDuration;

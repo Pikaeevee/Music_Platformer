@@ -16,8 +16,8 @@ public class SheetMusicManager : MonoBehaviour
   private int currentMusicIndex;
   private bool can_switch;
 
-  private GameObject combatUI;
-  private GameObject sheetMusicUI;
+//   private GameObject combatUI;
+//   private GameObject sheetMusicUI;
 
   private AudioSource audioSource;
   public AudioClip pullUpMusicSound;
@@ -33,8 +33,6 @@ public class SheetMusicManager : MonoBehaviour
     showingMusic = false;
     escapeToCloseText.SetActive(false);
     mToMusicText.SetActive(false);
-    combatUI = GameObject.Find("CombatUI");
-    sheetMusicUI = GameObject.Find("SheetMusicUI");
     audioSource = this.GetComponent<AudioSource>();
   }
 
@@ -44,8 +42,7 @@ public class SheetMusicManager : MonoBehaviour
 
   public void displayMusic(int i) {
     if(obtainedMusic[i]) {
-      PlayerManager.pm.playState = PlayerState.menuing;
-      combatUI.SetActive(false);
+      PlayerManager.pm.SetPlayerState(PlayerState.menuing);
       showingMusic = true;
       sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
       sheetMusicImage.SetActive(true);
@@ -89,54 +86,53 @@ public class SheetMusicManager : MonoBehaviour
     }
   }
 
-  public void hideMusic() {
-    PlayerManager.pm.playState = PlayerState.playing;
-    combatUI.SetActive(true);
-    showingMusic = false;
-    recallingMusic = false;
-    escapeToCloseText.SetActive(false);
-    mToMusicText.SetActive(true);
-    sheetMusicImage.GetComponent<Animator>().ResetTrigger("FadeUp");
-    sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", true);
-    audioSource.clip = putAwayMusicSound;
-    audioSource.Play();
-  }
-
-  void Update()
-  {
-    if(!canShowMusic) {
-      sheetMusicUI.SetActive(false);
-    } else {
-      sheetMusicUI.SetActive(true);
+    IEnumerator PutAwayMusic()
+    {
+        audioSource.clip = putAwayMusicSound;
+        audioSource.Play();
+        yield return new WaitForSeconds(0.2f);
+        PlayerManager.pm.SetPlayerState(PlayerState.playing);
     }
 
-    if(!showingMusic && canShowMusic && Input.GetKeyDown("m")) {
-      Debug.Log("Showing Music");
-      recallingMusic = true;
-      displayMusic(0);
+    public void hideMusic() {
+        showingMusic = false;
+        recallingMusic = false;
+        escapeToCloseText.SetActive(false);
+        mToMusicText.SetActive(true);
+        sheetMusicImage.GetComponent<Animator>().ResetTrigger("FadeUp");
+        sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", true);
+        StartCoroutine(PutAwayMusic());
     }
-    if(showingMusic && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))) {
-      Debug.Log("Hiding Music");
-      hideMusic();
+
+    void Update()
+    {
+        if(!showingMusic && canShowMusic && Input.GetKeyDown("m")) {
+        Debug.Log("Showing Music");
+        recallingMusic = true;
+        displayMusic(0);
+        }
+        if(showingMusic && (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))) {
+        Debug.Log("Hiding Music");
+        hideMusic();
+        }
+        if(recallingMusic) {
+        if (Input.GetAxisRaw("Horizontal") < -0.5f && can_switch)
+            {
+            Debug.Log("prev");
+                changeToPrevMusic();
+                can_switch = false;
+            }
+            if (Input.GetAxisRaw("Horizontal") > 0.5f && can_switch)
+            {
+            Debug.Log("next");
+                changeToNextMusic();
+                can_switch = false;
+            }
+            if(Input.GetAxisRaw("Horizontal")<0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
+            {
+                Debug.Log("reset");
+                can_switch = true;
+            }
+        }
     }
-    if(recallingMusic) {
-      if (Input.GetAxisRaw("Horizontal") < -0.5f && can_switch)
-        {
-          Debug.Log("prev");
-            changeToPrevMusic();
-            can_switch = false;
-        }
-        if (Input.GetAxisRaw("Horizontal") > 0.5f && can_switch)
-        {
-          Debug.Log("next");
-            changeToNextMusic();
-            can_switch = false;
-        }
-        if(Input.GetAxisRaw("Horizontal")<0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
-        {
-            Debug.Log("reset");
-            can_switch = true;
-        }
     }
-  }
-}

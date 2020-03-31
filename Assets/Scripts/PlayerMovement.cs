@@ -44,12 +44,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // check if player is fighting, halt any movement 
-        if (PlayerManager.pm.playState == PlayerState.fighting)
+        // check if player isn't playing, halt any movement 
+        if (PlayerManager.pm.GetPlayerState() != PlayerState.playing)
         {
             rb.velocity = new Vector2(0, rb.velocity.y); 
         }
-        if (PlayerManager.pm.playState == PlayerState.playing)
+        else
         {
             velocity = Input.GetAxis("Horizontal") * speed;
             if(Input.GetAxis("Horizontal") < 0) {
