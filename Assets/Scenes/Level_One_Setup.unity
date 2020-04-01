@@ -3781,6 +3781,16 @@ MonoBehaviour:
   pinkRing: {fileID: 463312230}
   blueRing: {fileID: 805749217}
   orangeRing: {fileID: 970250404}
+  puzzleRings:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  initRotations:
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
+  - {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &1436921685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33226,6 +33236,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78dd9c662d49b48deb92661d4b4e9b12, type: 3}
+--- !u!1001 &1063155896806771880
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 177.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.4798975
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310091, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063155895842310135, guid: 12409846ba7749c48b4f2063b11cad5c,
+        type: 3}
+      propertyPath: m_Name
+      value: PuzzleReset
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 12409846ba7749c48b4f2063b11cad5c, type: 3}
 --- !u!1001 &7204709283049540745
 PrefabInstance:
   m_ObjectHideFlags: 0
