@@ -16,7 +16,7 @@ public class MainMenuManager : MonoBehaviour
 
     void startGame() {
         Debug.Log("PRESSED THE BUTTON YAY");
-        loadScene(1); //LOAD THE GAME
+        loadScene(1); //START CUTSCENE
     }
 
     //Loads the given scene
