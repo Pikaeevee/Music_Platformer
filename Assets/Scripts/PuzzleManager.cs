@@ -54,6 +54,7 @@ public class PuzzleManager : MonoBehaviour
         }
         else if (Solved())
         {
+            Debug.Log("solved puzzle");
             PlayerManager.pm.NextLevel();
         }
     }

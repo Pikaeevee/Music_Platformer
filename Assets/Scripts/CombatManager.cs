@@ -20,7 +20,7 @@ public class CombatManager : MonoBehaviour
     private AudioSource audioPlayer;
 
     
-    private int winCondition; // # of times they have to follow correctly
+    private int winCondition = 1; // # of times they have to follow correctly
     public int loseCondition = 3; // # of times they can fail before losing combat 
 
     private int winNum; // # of times won so far 
@@ -129,7 +129,11 @@ public class CombatManager : MonoBehaviour
             yield break;
         }
         playerIndicator.SetActive(false);
-        startNextEnemyPhase();
+        // only start next enemy phase if player has not yet won 
+        if (winNum < winCondition)
+        {
+            startNextEnemyPhase();
+        }
     }
 
     // Update is called once per frame

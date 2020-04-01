@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded())
         {
-            Debug.Log("jumping");
+            //Debug.Log("jumping");
             isJumping = true;
             playerAnimator.SetTrigger("startJump");
             playerAnimator.ResetTrigger("doneJump");
