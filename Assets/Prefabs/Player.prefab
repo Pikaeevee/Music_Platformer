@@ -19126,8 +19126,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e1ab0133eb7a346608f1c915c5ad1307, type: 3}
   - {fileID: 8300000, guid: c4b9e096e5eb445288a9d1ab41273ce3, type: 3}
   - {fileID: 8300000, guid: 9c07163bf8864495da95cbaa9101f174, type: 3}
-  buffSound: {fileID: 8300000, guid: bdd144f12337a419a8f0b8a967fa02a3, type: 3}
-  debuffSound: {fileID: 8300000, guid: b4be6129512a14a3f8771282d2c97361, type: 3}
   particleSystems:
   - {fileID: 4841152504607029563}
   - {fileID: 1978423368}
@@ -19310,7 +19308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead7a67c22747a3479bd5a322556ffd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playState: 0
   playerLives: 3
   noteKeys:
   - i
@@ -19369,8 +19366,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5402558189419069217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.138, z: 0}
-  m_LocalScale: {x: 0.06318093, y: 0.06318093, z: 0.06318093}
+  m_LocalPosition: {x: 0, y: 4.15, z: 0}
+  m_LocalScale: {x: 1.0548394, y: 1.0548394, z: 1.0548394}
   m_Children: []
   m_Father: {fileID: 4841152505901316620}
   m_RootOrder: 4
