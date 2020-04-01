@@ -19626,10 +19626,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: 60d09502301f6d64e87f5c223d8f44cd, type: 3}
-  - {fileID: 8300000, guid: e4e190031adf60045a638cf77fcbb5df, type: 3}
-  - {fileID: 8300000, guid: 305e8d3df9dec31448382f010fb75640, type: 3}
-  - {fileID: 8300000, guid: f73ffc7a6d795da41a4f3dd70fc3eebf, type: 3}
+  - {fileID: 8300000, guid: 91684a184e58f4d13b351f1b5b4f2711, type: 3}
+  - {fileID: 8300000, guid: ed739ed3e7092437baf6aec5f51c90fa, type: 3}
+  - {fileID: 8300000, guid: 9e05d85d5bf3e45b7bef614294f5bd98, type: 3}
+  - {fileID: 8300000, guid: ce98407325a164410a3edd9d9cfda02c, type: 3}
   particleSystems:
   - {fileID: 555487470379054227}
   - {fileID: 555487469561795187}
