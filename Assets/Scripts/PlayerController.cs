@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour
         allSequences.Add("jkli", "SpikesControl");
         sequenceActivated.Add("SpikesControl", false);
         // playerSequences.Add("jkl;", "HighJump");
-        AddAbility("Dash");
-        AddAbility("SpikesControl");
+        // AddAbility("Dash");
+        // AddAbility("SpikesControl");
     }
 
     IEnumerator PlayParticleEffect(int i) {
@@ -77,38 +77,45 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canPlay) {
-        int ind = PlayerManager.pm.getIndexOfKey();
-        if(ind != -1) {
-            PlaySound(ind);
-        }
-        
-        // Sequence Handling
-        // Player has about a second to enter next key/note in sequence
-        if(PlayerManager.pm.GetPlayerState() == PlayerState.playing)
+        // COMMENT OUT BEFORE SUBMITTING
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            if(Input.inputString.Length > 0) {
-            timeoutTime = Time.time + timeoutDuration;
-            for(int i = 0; i < Input.inputString.Length; i++)
-            {
-                if("ijkl".Contains(Input.inputString[i].ToString()))
-                {
-                userSequence += Input.inputString[i];
-                }
-            }
-            foreach(string s in playerSequences.Keys) {
-                if(userSequence == s) {
-                if(!sequenceActivated[playerSequences[s]]) {
-                    this.Invoke(playerSequences[s], 0.0f);
-                    sequenceActivated[playerSequences[s]] = true;
-                }
-                }
-            }
-            }
-            else if(Time.time > timeoutTime && userSequence.Length > 0) {
-            userSequence = "";
-            }
+            Debug.Log("All abilities unlocked");
+            AddAbility("HighJump");
+            AddAbility("SpikesControl");
         }
+        if(canPlay) {
+            int ind = PlayerManager.pm.getIndexOfKey();
+            if(ind != -1) {
+                PlaySound(ind);
+            }
+            
+            // Sequence Handling
+            // Player has about a second to enter next key/note in sequence
+            if(PlayerManager.pm.GetPlayerState() == PlayerState.playing)
+            {
+                if(Input.inputString.Length > 0) {
+                    timeoutTime = Time.time + timeoutDuration;
+                    for(int i = 0; i < Input.inputString.Length; i++)
+                    {
+                        if("ijkl".Contains(Input.inputString[i].ToString()))
+                        {
+                        userSequence += Input.inputString[i];
+                        }
+                    }
+                    foreach(string s in playerSequences.Keys) {
+                        if(userSequence == s) {
+                            if(!sequenceActivated[playerSequences[s]]) {
+                                this.Invoke(playerSequences[s], 0.0f);
+                                sequenceActivated[playerSequences[s]] = true;
+                            }
+                        }
+                    }
+                }
+                else if(Time.time > timeoutTime && userSequence.Length > 0) {
+                    userSequence = "";
+                }
+            }
         }
     }
 
