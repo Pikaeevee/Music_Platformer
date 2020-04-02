@@ -11,7 +11,9 @@ public class PuzzleManager : MonoBehaviour
     public GameObject pinkRing;
     public GameObject blueRing;
     public GameObject orangeRing;
-    private GameObject[] puzzleRings;
+    public GameObject[] puzzleRings;
+
+    public Quaternion[] initRotations; 
 
     private Quaternion rotation;
 
@@ -20,6 +22,11 @@ public class PuzzleManager : MonoBehaviour
     {
         Debug.Log(isSolving);
         puzzleRings = new GameObject[] {purpleRing, pinkRing, blueRing, orangeRing};
+        initRotations = new Quaternion[4];
+        initRotations[0] = purpleRing.transform.rotation;
+        initRotations[1] = pinkRing.transform.rotation;
+        initRotations[2] = blueRing.transform.rotation;
+        initRotations[3] = orangeRing.transform.rotation;
     }
 
     // Update is called once per frame
@@ -54,6 +61,7 @@ public class PuzzleManager : MonoBehaviour
         }
         else if (Solved())
         {
+            Debug.Log("solved puzzle");
             PlayerManager.pm.NextLevel();
         }
     }
