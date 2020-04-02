@@ -25,7 +25,7 @@ public class PuzzleResetScript : MonoBehaviour
             int i = 0; 
             foreach (GameObject ring in puzzle.puzzleRings)
             {
-                ring.transform.Rotate(puzzle.initRotations[i].x, puzzle.initRotations[i].y, puzzle.initRotations[i].z);
+                ring.transform.rotation = new Quaternion(puzzle.initRotations[i].x, puzzle.initRotations[i].y, puzzle.initRotations[i].z, puzzle.initRotations[i].w);
                 i++;
             }
         }
