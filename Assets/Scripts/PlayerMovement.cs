@@ -217,6 +217,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Checkpoint")
         {
             PlayerManager.pm.AddCheckpoint(other.gameObject);
+            other.GetComponent<CheckpointController>().setActive();
             other.enabled = false;
         }    
 
