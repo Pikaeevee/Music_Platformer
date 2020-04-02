@@ -225,6 +225,11 @@ public class PlayerMovement : MonoBehaviour
         {
             other.gameObject.GetComponent<PuzzleManager>().SetIsSolving(true);
         }
+
+        if (other.gameObject.tag == "Exit")
+        {
+            PlayerManager.pm.NextLevel();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) 
