@@ -31,6 +31,7 @@ public class CombatManager : MonoBehaviour
 
     private CameraScript mainCameraScript;
     private SheetMusicManager sheetMusicManager;
+    private BossManager bossManager;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class CombatManager : MonoBehaviour
         player = GameObject.Find("Player");
         mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         sheetMusicManager = GameObject.Find("SheetMusicManager").GetComponent<SheetMusicManager>();
+        bossManager = GameObject.Find("BossManager").GetComponent<BossManager>() ?? null; 
     }
 
     public void StartCombat()
