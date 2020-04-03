@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && !isJumping)
             {
+                Debug.Log("trying to jump");
                 Jump();
                 //rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
                 // rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
@@ -103,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, groundLayer);
         if (hit.collider != null)
         {
-            //Debug.Log("player is grounded");
+            Debug.Log("player is grounded");
             playerAnimator.SetTrigger("doneJump");
             playerAnimator.ResetTrigger("startJump");
             isJumping = false;
@@ -118,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded())
         {
-            //Debug.Log("jumping");
+            Debug.Log("jumping");
             isJumping = true;
             playerAnimator.SetTrigger("startJump");
             playerAnimator.ResetTrigger("doneJump");
