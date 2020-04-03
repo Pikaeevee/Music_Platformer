@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED 
-    public float speed = 10.0f; 
+	// PLAYER OBJECT MUST HAVE RIGIDBODY2D ATTACHED
+    public float speed = 10.0f;
     public float jumpSpeed = 8.0f;
-    private float dashForce = 100.0f; 
-    public LayerMask groundLayer; 
+    private float dashForce = 100.0f;
+    public LayerMask groundLayer;
 
 
     private bool isJumping = false;
 
     private bool isFalling = false;
 
-    public bool canDash = false; 
-    private bool isDashing = false; 
+    public bool canDash = false;
+    private bool isDashing = false;
 
 
     private bool isHighJumping = false;
 
 
-    // vars related to jumping 
+    // vars related to jumping
     [SerializeField] private Vector2 howCloseToJump;
     public float bounceReturn = 0;
 
     private Rigidbody2D rb;
 
-    private float velocity; 
+    private float velocity;
 
     private Animator playerAnimator;
 
@@ -38,16 +38,16 @@ public class PlayerMovement : MonoBehaviour
         transform.position = PlayerManager.pm.lastCheckpoint;
         rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        groundLayer = LayerMask.GetMask("Ground"); 
+        groundLayer = LayerMask.GetMask("Ground");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // check if player isn't playing, halt any movement 
+        // check if player isn't playing, halt any movement
         if (PlayerManager.pm.GetPlayerState() != PlayerState.playing)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y); 
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
         else
         {
@@ -62,13 +62,13 @@ public class PlayerMovement : MonoBehaviour
             } else {
               playerAnimator.SetBool("isWalking", false);
             }
-            
-            // decrease how much player can move in the air 
+
+            // decrease how much player can move in the air
             if (isJumping)
             {
                 velocity *= 0.7f;
             }
-            rb.velocity = new Vector2(velocity, rb.velocity.y); 
+            rb.velocity = new Vector2(velocity, rb.velocity.y);
 
             if (Input.GetButtonDown("Jump") && !isJumping)
             {
@@ -83,38 +83,38 @@ public class PlayerMovement : MonoBehaviour
                 Dash();
             }
         }
-        // check for falling, multiply gravity 
-        
+        // check for falling, multiply gravity
+
         if (!isFalling && !isGrounded())
         {
             isFalling = true;
-            rb.gravityScale *= 2; 
+            rb.gravityScale *= 2;
         }
         else if (isFalling && isGrounded())
         {
             isFalling = false;
             rb.gravityScale /= 2;
         }
-        
+
     }
 
     bool isGrounded()
     {
         // Debug.Log("checking if is grounded");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.8f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, groundLayer);
         if (hit.collider != null)
         {
-            Debug.Log("player is grounded");
+            //Debug.Log("player is grounded");
             playerAnimator.SetTrigger("doneJump");
             playerAnimator.ResetTrigger("startJump");
             isJumping = false;
-            return true; 
+            return true;
         }
-
-        return false; 
+        Debug.Log("not grounded");
+        return false;
     }
 
-   
+
     private void Jump()
     {
         if (isGrounded())
@@ -132,31 +132,31 @@ public class PlayerMovement : MonoBehaviour
         if (isHighJumping)
         {
             Debug.Log("Already high jumping");
-            return; 
+            return;
         }
         Debug.Log("Activate High Jump");
-        isHighJumping = true; 
+        isHighJumping = true;
         jumpSpeed *= 1.5f;
         //rb.gravityScale *= 0.3f;
-    } 
+    }
 
     public void DeactivateHighJump() {
-      // reset jumpspeed of player 
+      // reset jumpspeed of player
         jumpSpeed /= 1.5f;
         //rb.gravityScale /= 0.3f;
-        isHighJumping = false; 
+        isHighJumping = false;
         Debug.Log("Deactivate High Jump");
     }
 
     public void Dash()
     {
-        // only dash in air 
+        // only dash in air
         if (!isGrounded() && !isDashing && canDash)
         {
             Debug.Log("Dashing");
             isDashing = true;
-            float currg = rb.gravityScale; 
-            rb.gravityScale = 0;  
+            float currg = rb.gravityScale;
+            rb.gravityScale = 0;
             //rb.velocity = new Vector2(, 0);
             if (isFalling)
             {
@@ -176,18 +176,18 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Debug.Log("Dash off cooldown");
-        isDashing = false; 
+        isDashing = false;
 
     }
 
     public void AnotherAbility()
     {
         Debug.Log("Some other ability was done");
-    } 
+    }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Platform") 
+        if(other.gameObject.tag == "Platform")
         {
             if(isJumping) {
               playerAnimator.SetTrigger("doneJump");
@@ -205,10 +205,10 @@ public class PlayerMovement : MonoBehaviour
             }
             PlayerManager.pm.LoseLife();
             transform.position = PlayerManager.pm.lastCheckpoint;
-        } 
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Platform")
         {
@@ -220,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerManager.pm.AddCheckpoint(other.gameObject);
             other.GetComponent<CheckpointController>().setActive();
             other.enabled = false;
-        }    
+        }
 
         if (other.gameObject.tag == "Puzzle")
         {
@@ -233,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) 
+    private void OnTriggerExit2D(Collider2D other)
     {
         if(other.gameObject.tag == "Platform")
         {
