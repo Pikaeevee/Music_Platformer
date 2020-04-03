@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
             return true; 
         }
-
+        Debug.Log("not grounded");
         return false; 
     }
 
