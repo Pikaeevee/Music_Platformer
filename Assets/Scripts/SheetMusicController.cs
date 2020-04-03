@@ -10,7 +10,7 @@ public class SheetMusicController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-      
+      sheetMusicManager = GameObject.Find("SheetMusicManager");
   }
 
   // Update is called once per frame
