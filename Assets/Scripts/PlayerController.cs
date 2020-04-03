@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip[] sounds;
     public ParticleSystem[] particleSystems;
     // public ParticleSystem notesParticles;
-    public bool canPlay = false;
+    public bool canPlay;
     // public float delayTime;
 
     public bool canControlSpikes = false; 
@@ -28,13 +28,9 @@ public class PlayerController : MonoBehaviour
     private int playedNotes = 0;
     private Animator playerAnimator;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerAnimator = GetComponent<Animator>();
-        player = GetComponent<AudioSource>();
-        movementScript = GetComponent<PlayerMovement>();
-        buffIconManager = GameObject.Find("BuffIconManager").GetComponent<BuffIconManager>();
+    void Awake() {
+        Debug.Log("PLAYER CONTROLLER AWAKE");
+        canPlay = false;
 
         allSequences.Add("ijkl", "HighJump");
         sequenceActivated.Add("HighJump", false);
@@ -42,6 +38,15 @@ public class PlayerController : MonoBehaviour
         sequenceActivated.Add("Dash", false);
         allSequences.Add("jkli", "SpikesControl");
         sequenceActivated.Add("SpikesControl", false);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerAnimator = GetComponent<Animator>();
+        player = GetComponent<AudioSource>();
+        movementScript = GetComponent<PlayerMovement>();
+        buffIconManager = GameObject.Find("BuffIconManager").GetComponent<BuffIconManager>();
         // playerSequences.Add("jkl;", "HighJump");
         // AddAbility("Dash");
         // AddAbility("SpikesControl");
