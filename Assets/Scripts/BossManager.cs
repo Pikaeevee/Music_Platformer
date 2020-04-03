@@ -7,13 +7,13 @@ public class BossManager : MonoBehaviour
 {
 
     public Canvas BossUI;
-    private TextMeshPro timer;
+    private TextMeshProUGUI timer;
     private int timeLimit = 180;
 
     // Start is called before the first frame update
     void Start()
     {
-        timer = BossUI.GetComponentInChildren<TextMeshPro>();
+        timer = BossUI.GetComponentInChildren<TextMeshProUGUI>();
         StartCoroutine(Countdown());
     }
 
@@ -29,9 +29,17 @@ public class BossManager : MonoBehaviour
         {
             int min = timeLimit / 60;
             int sec = timeLimit % 60;
-            timer.text = "Don't Get Expelled!\n" + min + ":" + sec;
+            if (sec < 10)
+            {
+                timer.text = "Don't Get Expelled!\n" + min + ":0" + sec;    
+            }
+            else
+            {
+                timer.text = "Don't Get Expelled!\n" + min + ":" + sec;
+            }
             yield return new WaitForSeconds(1.0f);
             timeLimit--;
         }
+        PlayerManager.pm.GameOver();
     }
 }
