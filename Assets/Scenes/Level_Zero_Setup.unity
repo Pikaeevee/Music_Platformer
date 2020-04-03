@@ -238,6 +238,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayingUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7500105568433803872, guid: 9d33b09f73ffa414a8871fbc84e1d74e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d33b09f73ffa414a8871fbc84e1d74e, type: 3}
 --- !u!1001 &14423584
@@ -574,7 +579,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: dc58097225145e7418060230b1b6c760, type: 3}
@@ -655,7 +660,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 045f82c86290d864ab85488596f12007, type: 3}
@@ -736,7 +741,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 51626e442f80a9c46ba9497479585b45, type: 3}
@@ -1006,7 +1011,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 045f82c86290d864ab85488596f12007, type: 3}
@@ -1104,7 +1109,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 51626e442f80a9c46ba9497479585b45, type: 3}
@@ -1202,7 +1207,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3128b62fb5c2d8d4a94adb808ed5ba2c, type: 3}
@@ -28331,7 +28336,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3128b62fb5c2d8d4a94adb808ed5ba2c, type: 3}
@@ -28345,18 +28350,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &618718955 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3325300478581565764, guid: b8fb1ac08fb0740fb9dccaf99d07a03b,
-    type: 3}
-  m_PrefabInstance: {fileID: 734861643}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &645873665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28614,6 +28607,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GeneralUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325300478581565764, guid: b8fb1ac08fb0740fb9dccaf99d07a03b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325300478823487771, guid: b8fb1ac08fb0740fb9dccaf99d07a03b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8fb1ac08fb0740fb9dccaf99d07a03b, type: 3}
@@ -28922,7 +28925,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: dc58097225145e7418060230b1b6c760, type: 3}
@@ -29086,7 +29089,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3128b62fb5c2d8d4a94adb808ed5ba2c, type: 3}
@@ -29285,18 +29288,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f04c39b50dfe474892109025802df03, type: 3}
---- !u!114 &1341559592 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3325300478823487771, guid: b8fb1ac08fb0740fb9dccaf99d07a03b,
-    type: 3}
-  m_PrefabInstance: {fileID: 734861643}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1376391786
 GameObject:
   m_ObjectHideFlags: 0
@@ -29563,7 +29554,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: dc58097225145e7418060230b1b6c760, type: 3}
@@ -29873,7 +29864,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 045f82c86290d864ab85488596f12007, type: 3}
@@ -29954,7 +29945,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1264203283
+  m_SortingLayerID: 1622265609
   m_SortingLayer: -1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 51626e442f80a9c46ba9497479585b45, type: 3}
@@ -130070,26 +130061,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 560077526506825753, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 560077526506825753, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.0548394
-      objectReference: {fileID: 0}
-    - target: {fileID: 560077526506825753, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.0548394
-      objectReference: {fileID: 0}
-    - target: {fileID: 560077526506825753, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.0548394
-      objectReference: {fileID: 0}
     - target: {fileID: 4841152505901316617, guid: 496b2facf07b54a9bac6547c2b161ff9,
         type: 3}
       propertyPath: m_Name
@@ -130150,25 +130121,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4841152505901316622, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: canPlay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402558189419069217, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711140589833161482, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 618718955}
-    - target: {fileID: 8711140589833161482, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: noteKeysUI
-      value: 
-      objectReference: {fileID: 1341559592}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 496b2facf07b54a9bac6547c2b161ff9, type: 3}

@@ -9,7 +9,6 @@ public class SheetMusicManager : MonoBehaviour
   public Sprite[] musicSprites;
   public GameObject sheetMusicImage;
   public GameObject escapeToCloseText;
-  public GameObject mToMusicText;
   public bool canShowMusic;
   private bool[] obtainedMusic;
   private bool showingMusic;
@@ -43,12 +42,12 @@ public class SheetMusicManager : MonoBehaviour
 
     void Start()
   {
+    Debug.Log("aaah");
     canShowMusic = true;
     obtainedMusic = new bool[musicSprites.Length];
     currentMusicIndex = 0;
     showingMusic = false;
     escapeToCloseText.SetActive(false);
-    mToMusicText.SetActive(false);
     audioSource = this.GetComponent<AudioSource>();
   }
 
@@ -63,7 +62,6 @@ public class SheetMusicManager : MonoBehaviour
       sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
       sheetMusicImage.SetActive(true);
       escapeToCloseText.SetActive(true);
-      mToMusicText.SetActive(false);
       sheetMusicImage.GetComponent<Animator>().SetTrigger("FadeUp");
       sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", false);
       currentMusicIndex = i;
@@ -114,7 +112,6 @@ public class SheetMusicManager : MonoBehaviour
         showingMusic = false;
         recallingMusic = false;
         escapeToCloseText.SetActive(false);
-        mToMusicText.SetActive(true);
         sheetMusicImage.GetComponent<Animator>().ResetTrigger("FadeUp");
         sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", true);
         StartCoroutine(PutAwayMusic());
@@ -134,13 +131,13 @@ public class SheetMusicManager : MonoBehaviour
         if(recallingMusic) {
         if (Input.GetAxisRaw("Horizontal") < -0.5f && can_switch)
             {
-            Debug.Log("prev");
+                Debug.Log("prev");
                 changeToPrevMusic();
                 can_switch = false;
             }
             if (Input.GetAxisRaw("Horizontal") > 0.5f && can_switch)
             {
-            Debug.Log("next");
+                Debug.Log("next");
                 changeToNextMusic();
                 can_switch = false;
             }

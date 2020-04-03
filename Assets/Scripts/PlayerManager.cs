@@ -16,9 +16,8 @@ public class PlayerManager : MonoBehaviour
 
     public string[] noteKeys = {"i", "j", "k", "l"};
 
-    public Image playerHealth;
-    public Image noteKeysUI;
-    private bool noNotesUI = true; 
+    private Image playerHealth;
+    
     public Sprite[] healthSprites;
 
     public Vector2 lastCheckpoint;
@@ -39,17 +38,18 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        // noteKeysUI = GameObject.Find("NoteKeys").GetComponent<Image>();
+        playerHealth = GameObject.Find("PlayerHealth").GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (noNotesUI && gameObject.GetComponent<PlayerController>().canPlay)
-        {
-            noteKeysUI.enabled = true;
-            noNotesUI = false;
-        }
+        // if (noNotesUI && gameObject.GetComponent<PlayerController>().canPlay)
+        // {
+        //     noteKeysUI.enabled = true;
+        //     noNotesUI = false;
+        // }
     }
 
     public void SetPlayerState(PlayerState state) {

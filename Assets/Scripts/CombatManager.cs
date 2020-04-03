@@ -40,7 +40,13 @@ public class CombatManager : MonoBehaviour
         player = GameObject.Find("Player");
         mainCameraScript = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         sheetMusicManager = GameObject.Find("SheetMusicManager").GetComponent<SheetMusicManager>();
-        bossManager = GameObject.Find("BossManager").GetComponent<BossManager>() ?? null; 
+
+        GameObject obj;
+        if(obj = GameObject.Find("BossManager")) {
+            bossManager = obj.GetComponent<BossManager>();
+        } else {
+            bossManager = null;
+        }
     }
 
     public void StartCombat()
