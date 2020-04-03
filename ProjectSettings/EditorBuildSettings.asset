@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level_Two_Setup.unity
     guid: 538fd17aeb87f401ebe476cfc8773cf4
   - enabled: 1
+    path: Assets/Scenes/Boss_Level_Setup.unity
+    guid: 09b568ee86ac94889b3db8746cfcef43
+  - enabled: 1
     path: Assets/Scenes/End_Cutscene.unity
     guid: c0d6e3d2a22b24cb383679c9a89a6b2b
   m_configObjects: {}

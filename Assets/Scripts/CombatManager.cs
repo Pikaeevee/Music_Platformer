@@ -192,6 +192,7 @@ public class CombatManager : MonoBehaviour
         {
             Debug.Log("MoveBoss");
             bossManager.MoveBoss();
+            enemy.GetComponent<EnemyController>().resetRounds();
         }
         else 
         {

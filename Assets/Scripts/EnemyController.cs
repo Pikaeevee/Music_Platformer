@@ -88,6 +88,12 @@ public class EnemyController : MonoBehaviour
         currentRound++;
     }
 
+    public void resetRounds()
+    {
+        roundCount = enemyVars.getRoundCount();
+        currentRound = 0;
+    }
+
     //Checks if enemy is done with all rounds
     public bool isDone() {
         Debug.Log("checking if done" + roundCount + " / " + currentRound);
