@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public AudioClip[] sounds;
     public ParticleSystem[] particleSystems;
     // public ParticleSystem notesParticles;
-    public bool canPlay;
+    public bool canPlay = true;
     // public float delayTime;
 
     public bool canControlSpikes = false; 
@@ -29,7 +30,6 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnimator;
 
     void Awake() {
-        Debug.Log("PLAYER CONTROLLER AWAKE");
         canPlay = false;
 
         allSequences.Add("ijkl", "HighJump");
@@ -50,6 +50,24 @@ public class PlayerController : MonoBehaviour
         // playerSequences.Add("jkl;", "HighJump");
         // AddAbility("Dash");
         // AddAbility("SpikesControl");
+    }
+
+
+    // called first
+    void OnEnable()
+    {
+        Debug.Log("OnEnable called");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name != "Level_Zero_Setup") {
+            canPlay = true;
+        }
+        if(scene.name == "Level_One_Setup") {
+            PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("HighJump");
+        }
     }
 
     IEnumerator PlayParticleEffect(int i) {

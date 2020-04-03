@@ -42,6 +42,7 @@ public class SheetMusicManager : MonoBehaviour
 
     void Start()
   {
+    Debug.Log("aaah");
     canShowMusic = true;
     obtainedMusic = new bool[musicSprites.Length];
     currentMusicIndex = 0;
@@ -130,13 +131,13 @@ public class SheetMusicManager : MonoBehaviour
         if(recallingMusic) {
         if (Input.GetAxisRaw("Horizontal") < -0.5f && can_switch)
             {
-            Debug.Log("prev");
+                Debug.Log("prev");
                 changeToPrevMusic();
                 can_switch = false;
             }
             if (Input.GetAxisRaw("Horizontal") > 0.5f && can_switch)
             {
-            Debug.Log("next");
+                Debug.Log("next");
                 changeToNextMusic();
                 can_switch = false;
             }

@@ -19131,7 +19131,7 @@ MonoBehaviour:
   - {fileID: 1978423368}
   - {fileID: 1159148960}
   - {fileID: 1932159268}
-  canPlay: 0
+  canPlay: 1
   canControlSpikes: 0
 --- !u!82 &4841152505901316621
 AudioSource:
@@ -19314,8 +19314,6 @@ MonoBehaviour:
   - j
   - k
   - l
-  playerHealth: {fileID: 0}
-  noteKeysUI: {fileID: 0}
   healthSprites:
   - {fileID: 21300000, guid: 409ffbb2141d14964b5730a76c1a8d5e, type: 3}
   - {fileID: 21300000, guid: 364a9be24608341108c19a9c47e9b049, type: 3}

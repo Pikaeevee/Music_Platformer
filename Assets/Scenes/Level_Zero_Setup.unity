@@ -130061,26 +130061,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 560077526506825753, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 560077526506825753, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.0548394
-      objectReference: {fileID: 0}
-    - target: {fileID: 560077526506825753, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.0548394
-      objectReference: {fileID: 0}
-    - target: {fileID: 560077526506825753, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.0548394
-      objectReference: {fileID: 0}
     - target: {fileID: 4841152505901316617, guid: 496b2facf07b54a9bac6547c2b161ff9,
         type: 3}
       propertyPath: m_Name
@@ -130140,26 +130120,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4841152505901316622, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: canPlay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402558189419069217, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711140589833161482, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: playerHealth
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711140589833161482, guid: 496b2facf07b54a9bac6547c2b161ff9,
-        type: 3}
-      propertyPath: noteKeysUI
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 496b2facf07b54a9bac6547c2b161ff9, type: 3}
