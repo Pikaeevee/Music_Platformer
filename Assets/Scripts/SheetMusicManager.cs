@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SheetMusicManager : MonoBehaviour
 {
@@ -24,8 +25,23 @@ public class SheetMusicManager : MonoBehaviour
   public AudioClip changeMusicSound;
   public AudioClip putAwayMusicSound;
 
+    public static SheetMusicManager sm; 
 
-  void Start()
+    private void Awake()
+    {
+        // Singleton behavior 
+        if (sm == null)
+        {
+            sm = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void Start()
   {
     canShowMusic = true;
     obtainedMusic = new bool[musicSprites.Length];
@@ -135,4 +151,24 @@ public class SheetMusicManager : MonoBehaviour
             }
         }
     }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    { 
+        if (scene.name == "MainMenu")
+        {
+            // Destroy the gameobject this script is attached to
+            Destroy(gameObject);
+        }
+    }
+}
