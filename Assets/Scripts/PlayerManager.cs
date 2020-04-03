@@ -95,7 +95,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         Debug.Log("You died :(");
         // TODO: CREATE GAME OVER SCREEN  

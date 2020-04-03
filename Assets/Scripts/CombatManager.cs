@@ -182,7 +182,15 @@ public class CombatManager : MonoBehaviour
         player.GetComponent<PlayerManager>().resetLives();
         PlayerManager.pm.SetPlayerState(PlayerState.playing);
         player.GetComponent<PlayerController>().canPlay = true;
-        StartCoroutine(eliminateEnemy());
+        if(bossManager)
+        {
+            Debug.Log("MoveBoss");
+            bossManager.MoveBoss();
+        }
+        else 
+        {
+            StartCoroutine(eliminateEnemy());
+        }
         roundNumber.SetActive(false);
     }
 
