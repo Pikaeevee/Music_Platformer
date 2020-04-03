@@ -101,10 +101,10 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded()
     {
         // Debug.Log("checking if is grounded");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2.0f, groundLayer);
         if (hit.collider != null)
         {
-            Debug.Log("player is grounded");
+            //Debug.Log("player is grounded");
             playerAnimator.SetTrigger("doneJump");
             playerAnimator.ResetTrigger("startJump");
             isJumping = false;
