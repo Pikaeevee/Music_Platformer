@@ -128,11 +128,12 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                     foreach(string s in playerSequences.Keys) {
-                        if(userSequence == s) {
+                        if(userSequence.Contains(s)) {
                             Debug.Log(userSequence);
                             if(!sequenceActivated[playerSequences[s]]) {
                                 this.Invoke(playerSequences[s], 0.0f);
                                 sequenceActivated[playerSequences[s]] = true;
+                                userSequence = userSequence.Replace(s, "");
                             }
                         }
                     }

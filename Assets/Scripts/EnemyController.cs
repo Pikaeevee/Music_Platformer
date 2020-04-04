@@ -32,14 +32,14 @@ public class EnemyController : MonoBehaviour
         indicator.SetActive(false);
         dialogueBox.SetActive(false);
         enemyVars = this.GetComponent<EnemyVarsInterface>();
-        musicNotes = enemyVars.getMusicNotes();
         roundCount = enemyVars.getRoundCount();
         currentRound = 0;
     }
 
-    //TODO: edit this function for better dialogue support
+    //Displays the enemy's dialogue
     public IEnumerator ShowPrebattleDialogue() {
         dialogueText.text = enemyVars.getPrebattleDialogue();
+        musicNotes = enemyVars.getMusicNotes();
         dialogueBox.SetActive(true);
         yield return new WaitForSeconds(dialogueTime);
         dialogueBox.SetActive(false);

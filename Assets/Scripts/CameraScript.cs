@@ -55,9 +55,6 @@ public class CameraScript : MonoBehaviour
             }
             transform.position = new Vector3(targetX, targetY, transform.position.z);
 
-            targetX += xOffset;
-            targetY += yOffset;
-
             if (Mathf.Abs(transform.position.x - targetX) > margin || xOffset != 0)
             {
                 targetX = Mathf.Lerp(transform.position.x, targetX, 1 / m_DampTime * Time.deltaTime) + shake;
@@ -66,6 +63,9 @@ public class CameraScript : MonoBehaviour
             {
                 targetY = Mathf.Lerp(transform.position.y, targetY, m_DampTime * Time.deltaTime);
             }
+
+            targetX += xOffset;
+            targetY += yOffset;
             
             float currOrthSize = this.GetComponent<Camera>().orthographicSize;
             if (currOrthSize != orthoSize) {
