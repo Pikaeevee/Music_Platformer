@@ -268,7 +268,7 @@ PrefabInstance:
     - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
       propertyPath: musicIndex
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
@@ -1718,7 +1718,7 @@ PrefabInstance:
     - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
       propertyPath: musicIndex
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
@@ -3957,7 +3957,7 @@ PrefabInstance:
     - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
       propertyPath: musicIndex
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
@@ -105395,7 +105395,7 @@ PrefabInstance:
     - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
       propertyPath: musicIndex
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7579728219234804280, guid: fa9df9dad47c449429ba1d727fa437c8,
         type: 3}
