@@ -7,49 +7,43 @@ using UnityEngine.SceneManagement;
 public class SheetMusicManager : MonoBehaviour
 {
   public Sprite[] musicSprites;
-  public GameObject sheetMusicImage;
-  public GameObject escapeToCloseText;
+  private GameObject sheetMusicImage;
   public bool canShowMusic;
   private bool[] obtainedMusic;
   private bool showingMusic;
   private bool recallingMusic;
   private int currentMusicIndex;
   private bool can_switch;
-
-//   private GameObject combatUI;
-//   private GameObject sheetMusicUI;
-
   private AudioSource audioSource;
   public AudioClip pullUpMusicSound;
   public AudioClip changeMusicSound;
   public AudioClip putAwayMusicSound;
 
-    public static SheetMusicManager sm; 
+    // public static SheetMusicManager sm; 
 
     private void Awake()
     {
         // Singleton behavior 
-        if (sm == null)
-        {
-            sm = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        // if (sm == null)
+        // {
+        //     sm = this;
+        //     DontDestroyOnLoad(this.gameObject);
+        // }
+        // else
+        // {
+        //     Destroy(this.gameObject);
+        // }
     }
 
     void Start()
-  {
-    Debug.Log("aaah");
-    canShowMusic = true;
-    obtainedMusic = new bool[musicSprites.Length];
-    currentMusicIndex = 0;
-    showingMusic = false;
-    escapeToCloseText.SetActive(false);
-    audioSource = this.GetComponent<AudioSource>();
-  }
+    {
+        Debug.Log("aaah");
+        canShowMusic = true;
+        currentMusicIndex = 0;
+        showingMusic = false;
+        sheetMusicImage = GameObject.Find("SheetMusicImage");
+        audioSource = this.GetComponent<AudioSource>();
+    }
 
   public void setSheetMusicObtained(int i) {
     obtainedMusic[i] = true;  
@@ -61,7 +55,6 @@ public class SheetMusicManager : MonoBehaviour
       showingMusic = true;
       sheetMusicImage.GetComponent<Image>().sprite = musicSprites[i];
       sheetMusicImage.SetActive(true);
-      escapeToCloseText.SetActive(true);
       sheetMusicImage.GetComponent<Animator>().SetTrigger("FadeUp");
       sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", false);
       currentMusicIndex = i;
@@ -111,7 +104,6 @@ public class SheetMusicManager : MonoBehaviour
     public void hideMusic() {
         showingMusic = false;
         recallingMusic = false;
-        escapeToCloseText.SetActive(false);
         sheetMusicImage.GetComponent<Animator>().ResetTrigger("FadeUp");
         sheetMusicImage.GetComponent<Animator>().SetBool("HideMusic", true);
         StartCoroutine(PutAwayMusic());
@@ -162,10 +154,33 @@ public class SheetMusicManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     { 
+        obtainedMusic = new bool[musicSprites.Length];
+
         if (scene.name == "MainMenu")
         {
             // Destroy the gameobject this script is attached to
             Destroy(gameObject);
         }
+        if(scene.name != "Level_Zero_Setup") {
+            if(scene.name == "Level_One_Setup") {
+                for(int i = 0; i < 2; i++) {
+                    obtainedMusic[i] = true;
+                    canShowMusic = true;
+                }
+            }
+            if(scene.name == "Level_Two_Setup") {
+                for(int i = 0; i < 3; i++) {
+                    obtainedMusic[i] = true;
+                    canShowMusic = true;
+                }
+            }
+            if(scene.name == "Boss_Level_Setup") {
+                for(int i = 0; i < obtainedMusic.Length; i++) {
+                    obtainedMusic[i] = true;
+                    canShowMusic = true;
+                }
+            }
+        }
+        
     }
 }

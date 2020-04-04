@@ -37,8 +37,10 @@ public class BossManager : MonoBehaviour
     {
         distance = Vector3.Distance(boss.transform.position, target);
         float distTraveled = (Time.time - startTime) * speed;
-        float increment = distTraveled / distance;
-        boss.transform.position = Vector3.Lerp(boss.transform.position, target, increment);
+        if (distance != 0) {
+            float increment = distTraveled / distance;
+            boss.transform.position = Vector3.Lerp(boss.transform.position, target, increment);
+        }
     }
 
     public void MoveBoss()

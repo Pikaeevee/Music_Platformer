@@ -22,7 +22,10 @@ public class CameraScript : MonoBehaviour
 
     private float shake = 0.0f;
 
-    private float offset = 0.3f; 
+    private float xOffset = 0f; 
+    private float yOffset = 0f; 
+
+    private float orthoSize = 5.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -52,13 +55,21 @@ public class CameraScript : MonoBehaviour
             }
             transform.position = new Vector3(targetX, targetY, transform.position.z);
 
-            if (Mathf.Abs(transform.position.x - targetX) > margin)
+            targetX += xOffset;
+            targetY += yOffset;
+
+            if (Mathf.Abs(transform.position.x - targetX) > margin || xOffset != 0)
             {
                 targetX = Mathf.Lerp(transform.position.x, targetX, 1 / m_DampTime * Time.deltaTime) + shake;
             }
-            if (Mathf.Abs(transform.position.y - targetY) > margin)
+            if (Mathf.Abs(transform.position.y - targetY) > margin || yOffset != 0)
             {
                 targetY = Mathf.Lerp(transform.position.y, targetY, m_DampTime * Time.deltaTime);
+            }
+            
+            float currOrthSize = this.GetComponent<Camera>().orthographicSize;
+            if (currOrthSize != orthoSize) {
+                this.GetComponent<Camera>().orthographicSize = Mathf.Lerp(currOrthSize, orthoSize, Time.deltaTime);
             }
 
             transform.position = new Vector3(targetX, targetY, transform.position.z);
@@ -66,11 +77,22 @@ public class CameraScript : MonoBehaviour
     }
 
     public void setRelPos(float enemyXPos) {
-      offset = (enemyXPos - m_Target.position.x) / 2;
+      xOffset = (enemyXPos - m_Target.position.x) / 2.0f;
+    }
+
+    public void zoomOut() {
+        orthoSize = 6.3f;
+        yOffset = 1.5f;
+        // this.GetComponent<Camera>().orthographicSize = 6.3f;
+    }
+    public void zoomIn() {
+        orthoSize = 5.3f;
+        yOffset = 0f;
+        // this.GetComponent<Camera>().orthographicSize = 5.3f;
     }
 
     public void resetRelPos() {
-      offset = 0;
+      xOffset = 0;
     }
 
     public IEnumerator shakeCamera() {

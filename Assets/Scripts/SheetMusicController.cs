@@ -43,7 +43,7 @@ public class SheetMusicController : MonoBehaviour
         break;
       case 3:
       //Spike manip ability
-        PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("SpikeControl");
+        PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("SpikesControl");
         break;
       default:
         break;

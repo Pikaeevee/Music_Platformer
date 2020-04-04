@@ -53,6 +53,7 @@ public class CombatManager : MonoBehaviour
     {
         sheetMusicManager.canShowMusic = false;
         //   generateEnemySequence();
+        if(bossManager != null) mainCameraScript.zoomOut();
         mainCameraScript.setRelPos(enemy.transform.position.x);
         alert.GetComponent<Animator>().ResetTrigger("EnemyEncounter");
         alert.GetComponent<Animator>().SetTrigger("EnemyEncounter");
@@ -192,6 +193,7 @@ public class CombatManager : MonoBehaviour
         {
             Debug.Log("MoveBoss");
             bossManager.MoveBoss();
+            mainCameraScript.zoomIn();
             enemy.GetComponent<EnemyController>().resetRounds();
         }
         else 

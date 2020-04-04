@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("HighJump");
         }
         if(scene.name == "Boss_Level_Setup") {
-            PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("SpikeControl");            
+            PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("SpikesControl");            
         }
     }
 
@@ -124,11 +124,12 @@ public class PlayerController : MonoBehaviour
                     {
                         if("ijkl".Contains(Input.inputString[i].ToString()))
                         {
-                        userSequence += Input.inputString[i];
+                            userSequence += Input.inputString[i];
                         }
                     }
                     foreach(string s in playerSequences.Keys) {
                         if(userSequence == s) {
+                            Debug.Log(userSequence);
                             if(!sequenceActivated[playerSequences[s]]) {
                                 this.Invoke(playerSequences[s], 0.0f);
                                 sequenceActivated[playerSequences[s]] = true;
@@ -158,6 +159,7 @@ public class PlayerController : MonoBehaviour
     void SpikesControl()
     {
         canControlSpikes = true;
+        Debug.Log("yaaa");
         StartCoroutine(SpikesControlDuration());
     }
 
