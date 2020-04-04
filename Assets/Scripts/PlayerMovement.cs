@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && !isJumping)
             {
-                Debug.Log("trying to jump");
+                // Debug.Log("trying to jump");
                 Jump();
                 //rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
                 // rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
             return true;
         }
-        Debug.Log("not grounded");
+        // Debug.Log("not grounded");
         return false;
     }
 
@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded())
         {
-            Debug.Log("jumping");
+            // Debug.Log("jumping");
             isJumping = true;
             playerAnimator.SetTrigger("startJump");
             playerAnimator.ResetTrigger("doneJump");
@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isHighJumping)
         {
-            Debug.Log("Already high jumping");
+            // Debug.Log("Already high jumping");
             return;
         }
         Debug.Log("Activate High Jump");

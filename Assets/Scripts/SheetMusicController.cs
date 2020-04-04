@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SheetMusicController : MonoBehaviour
 {
@@ -31,19 +32,26 @@ public class SheetMusicController : MonoBehaviour
 
   private void AddMusic()
   {
+    Scene scene = SceneManager.GetActiveScene();
     switch(musicIndex)
     {
       // Melodica Tutorial
       case 0:
-        PlayerManager.pm.gameObject.GetComponent<PlayerController>().canPlay = true;
+        if(scene.name == "Level_Zero_Setup") {
+            PlayerManager.pm.gameObject.GetComponent<PlayerController>().canPlay = true;
+        }
         break;
       // High jump ability
       case 1:
-        PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("HighJump");
+        if(scene.name == "Level_Zero_Setup") {
+            PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("HighJump");
+        }
         break;
       case 3:
       //Spike manip ability
-        PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("SpikesControl");
+        if(scene.name == "Level_Two_Setup") {
+            PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("SpikesControl");
+        }
         break;
       default:
         break;
