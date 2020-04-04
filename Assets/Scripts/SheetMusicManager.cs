@@ -9,7 +9,7 @@ public class SheetMusicManager : MonoBehaviour
   public Sprite[] musicSprites;
   private GameObject sheetMusicImage;
   public bool canShowMusic;
-  private bool[] obtainedMusic;
+  private static bool[] obtainedMusic;
   private bool showingMusic;
   private bool recallingMusic;
   private int currentMusicIndex;
@@ -43,6 +43,37 @@ public class SheetMusicManager : MonoBehaviour
         showingMusic = false;
         sheetMusicImage = GameObject.Find("SheetMusicImage");
         audioSource = this.GetComponent<AudioSource>();
+        carryAbilities();
+    }
+
+    void carryAbilities() {
+        Scene scene = SceneManager.GetActiveScene();
+        Debug.Log("SCENE LOADED " + scene);
+        Debug.Log("SCENE LOADED " + scene.name);
+        obtainedMusic = new bool[musicSprites.Length];
+        
+        if(scene.name != "Level_Zero_Setup") {
+            if(scene.name == "Level_One_Setup") {
+                for(int i = 0; i < 2; i++) {
+                    obtainedMusic[i] = true;
+                    canShowMusic = true;
+                }
+            }
+            if(scene.name == "Level_Two_Setup") {
+                for(int i = 0; i < 3; i++) {
+                    obtainedMusic[i] = true;
+                    canShowMusic = true;
+                }
+            }
+            if(scene.name == "Boss_Level_Setup") {
+                for(int i = 0; i < obtainedMusic.Length; i++) {
+                    obtainedMusic[i] = true;
+                    canShowMusic = true;
+                }
+            }
+        }
+        Debug.Log(obtainedMusic);
+        Debug.Log(obtainedMusic.Length);
     }
 
   public void setSheetMusicObtained(int i) {
@@ -135,7 +166,7 @@ public class SheetMusicManager : MonoBehaviour
             }
             if(Input.GetAxisRaw("Horizontal")<0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
             {
-                Debug.Log("reset");
+                // Debug.Log("reset");
                 can_switch = true;
             }
         }
@@ -154,33 +185,10 @@ public class SheetMusicManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     { 
-        obtainedMusic = new bool[musicSprites.Length];
-
         if (scene.name == "MainMenu")
         {
             // Destroy the gameobject this script is attached to
             Destroy(gameObject);
         }
-        if(scene.name != "Level_Zero_Setup") {
-            if(scene.name == "Level_One_Setup") {
-                for(int i = 0; i < 2; i++) {
-                    obtainedMusic[i] = true;
-                    canShowMusic = true;
-                }
-            }
-            if(scene.name == "Level_Two_Setup") {
-                for(int i = 0; i < 3; i++) {
-                    obtainedMusic[i] = true;
-                    canShowMusic = true;
-                }
-            }
-            if(scene.name == "Boss_Level_Setup") {
-                for(int i = 0; i < obtainedMusic.Length; i++) {
-                    obtainedMusic[i] = true;
-                    canShowMusic = true;
-                }
-            }
-        }
-        
     }
 }
