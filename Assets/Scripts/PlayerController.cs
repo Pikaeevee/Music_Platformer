@@ -64,9 +64,10 @@ public class PlayerController : MonoBehaviour
     {
         if(scene.name != "Level_Zero_Setup") {
             canPlay = true;
-        }
-        if(scene.name == "Level_One_Setup") {
             PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("HighJump");
+        }
+        if(scene.name == "Boss_Level_Setup") {
+            PlayerManager.pm.gameObject.GetComponent<PlayerController>().AddAbility("SpikeControl");            
         }
     }
 
