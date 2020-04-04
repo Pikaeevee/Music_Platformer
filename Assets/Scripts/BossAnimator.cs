@@ -13,6 +13,8 @@ public class BossAnimator : MonoBehaviour
     {
         bossAnimator = gameObject.GetComponent<Animator>();
         bossController = gameObject.GetComponent<EnemyController>();
+
+        bossAnimator.SetBool("isPlaying", false);
     }
 
     // Update is called once per frame
@@ -20,15 +22,17 @@ public class BossAnimator : MonoBehaviour
     {
         if (!bossController.donePlaying && !bossPlaying)
         {
+            Debug.Log("boss playing"); 
             bossPlaying = true;
-            BossAnimator.ResetTrigger("Idle");
-            BossAnimator.SetTrigger("Playing"); 
+            bossAnimator.SetBool("isPlaying", true);
+            bossAnimator.SetBool("isIdle", false);
         }
         else if (bossController.donePlaying && bossPlaying)
         {
+            Debug.Log("bossnot playing");
             bossPlaying = false;
-            BossAnimator.ResetTrigger("Playing");
-            BossAnimator.SetTrigger("Idle"); 
+            bossAnimator.SetBool("isPlaying", false);
+            bossAnimator.SetBool("isIdle", true);
         }
     }
 }
