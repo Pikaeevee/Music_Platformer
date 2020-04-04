@@ -123,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
             playerAnimator.SetTrigger("startJump");
             playerAnimator.ResetTrigger("doneJump");
+            playerAnimator.SetBool("isWalking", false);
             rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         }
     }

@@ -111,7 +111,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CharacterJumpEntrance
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1932878727552468781}
@@ -169,7 +169,7 @@ AnimatorStateMachine:
     m_Position: {x: 150, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3120914372951694817}
-    m_Position: {x: 370, y: 250, z: 0}
+    m_Position: {x: 380, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4272720998953236386}
     m_Position: {x: 295, y: 385, z: 0}
@@ -440,7 +440,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CharacterJumpExit
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1359228537016393323}
