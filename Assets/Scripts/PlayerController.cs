@@ -178,7 +178,9 @@ public class PlayerController : MonoBehaviour
     {
       if(ability == allSequences[s])
       {
-        playerSequences.Add(s, allSequences[s]);
+        if(!playerSequences.ContainsKey(s)) {
+            playerSequences.Add(s, allSequences[s]);
+        }
         break;
       }
     }
