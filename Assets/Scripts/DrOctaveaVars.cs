@@ -37,6 +37,12 @@ public class DrOctaveaVars : MonoBehaviour, EnemyVarsInterface
                 musicNotes[2] = new int[]{2, 2, 0, 3, 1, 3};
                 break;
             }
+            case 4: {
+                musicNotes[0] = new int[]{3, 1, 3, 0, 3, 2};
+                musicNotes[1] = new int[]{0, 2, 3, 3, 1, 1, 2};
+                musicNotes[2] = new int[]{1, 3, 0, 3, 1, 0, 2};
+                break;
+            }
             default: break;
         }
         return musicNotes;
@@ -53,6 +59,9 @@ public class DrOctaveaVars : MonoBehaviour, EnemyVarsInterface
             }
             case 3: {
                 return "This is your final warning Keyton! Say goodbye to your music career!!";
+            }
+            case 4: {
+                return "Show me your true strength! Prove to me you belong here!";
             }
             default: break;
         }
